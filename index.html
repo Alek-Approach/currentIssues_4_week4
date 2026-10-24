@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Week 3: Rhetoric &amp; Fallacies | Current Issues BP/AAP | Approach</title>
+<style>
+:root{
+  --navy:#16345f; --navy-2:#24497d; --navy-pale:#e8edf5;
+  --gold:#d4a017; --gold-pale:#fbf3dc; --gold-ink:#7a5a00;
+  --teal:#1f6f6b; --teal-pale:#e3f1ef;
+  --ink:#1c2433; --muted:#5b6475; --line:#d6dce7; --paper:#f4f6fa; --card:#fff;
+  --ok:#2f7d4f; --ok-pale:#e5f3ea; --no:#b23a3a; --no-pale:#f8e6e6;
+  --sans:"Libre Franklin","Segoe UI","Helvetica Neue",Arial,sans-serif;
+  --head:"Montserrat","Avenir Next","Segoe UI",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-padding-top:64px}
+body{margin:0;background:var(--paper);color:var(--ink);font:15.5px/1.55 var(--sans)}
+a{color:var(--navy-2)}
+h1,h2,h3,h4{font-family:var(--head);color:var(--navy);margin:0}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+
+/* ---------- header ---------- */
+.mast{background:var(--navy);color:#fff;border-bottom:6px solid var(--gold)}
+.mast .wrap{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;padding-top:22px;padding-bottom:22px}
+.mast img{height:62px;display:block}
+.mast .kicker{color:var(--gold);font:700 13px/1.3 var(--head);letter-spacing:.04em}
+.mast h1{color:#fff;font-size:30px;line-height:1.15;margin:4px 0 2px}
+.mast .sub{color:#c9d4e6;font-size:15px}
+.idrow{display:flex;flex-wrap:wrap;gap:12px 22px;background:#fff;border:1px solid var(--line);border-top:0;padding:12px 18px;border-radius:0 0 10px 10px}
+.idrow label{font-weight:600;color:var(--navy);display:flex;align-items:center;gap:8px}
+.idrow input{border:0;border-bottom:1.5px solid var(--line);font:inherit;padding:3px 4px;min-width:220px;background:transparent}
+.idrow input[type=date]{min-width:150px}
+.idrow input[type=radio]{min-width:0}
+.idrow .mode label{font-weight:400;color:var(--ink);gap:4px}
+.idrow .mode{display:flex;gap:10px;align-items:center;color:var(--muted);font-weight:400}
+
+/* ---------- toolbar ---------- */
+.bar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;gap:8px;min-height:52px;flex-wrap:wrap;padding-top:6px;padding-bottom:6px}
+.bar nav{display:flex;gap:4px;flex-wrap:wrap}
+.bar nav a{text-decoration:none;color:var(--navy);font-weight:600;font-size:14px;padding:6px 10px;border-radius:6px}
+.bar nav a:hover{background:var(--navy-pale)}
+.bar .sp{flex:1}
+.timer{display:flex;align-items:center;gap:4px;background:var(--navy);color:#fff;border-radius:8px;padding:3px 4px 3px 10px}
+.timer .clock{font:700 18px/1 var(--head);min-width:58px;text-align:center;font-variant-numeric:tabular-nums}
+.timer.done{background:var(--no);animation:pulse 1s 3}
+@keyframes pulse{50%{opacity:.6}}
+.timer button{background:rgba(255,255,255,.14);color:#fff;border:0;border-radius:5px;padding:4px 8px;font-size:13px}
+.timer button:hover{background:rgba(255,255,255,.28)}
+.btn{border:1.5px solid var(--navy);background:#fff;color:var(--navy);border-radius:7px;padding:6px 12px;font-weight:600;font-size:14px}
+.btn:hover{background:var(--navy-pale)}
+.btn.solid{background:var(--navy);color:#fff}
+.btn.solid:hover{background:var(--navy-2)}
+.btn.gold{background:var(--gold);border-color:var(--gold);color:var(--navy)}
+.btn.ghost{border-color:var(--line);color:var(--muted);font-weight:500}
+.saved{font-size:12.5px;color:var(--muted);min-width:70px}
+
+/* ---------- intro / sources / map ---------- */
+.intro{display:grid;grid-template-columns:1.25fr 1fr;gap:16px;margin:18px 0}
+.panel{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+.panel h2{font-size:17px;margin-bottom:8px}
+.goals{margin:0;padding-left:20px}
+.goals li{margin:3px 0}
+.src{display:flex;flex-direction:column;gap:10px}
+.src .s{border-left:4px solid var(--gold);padding:2px 0 2px 12px}
+.src .s b{display:block;color:var(--navy)}
+.src .s small{color:var(--muted)}
+.note{font-size:13.5px;color:var(--muted)}
+
+.map{display:grid;grid-template-columns:100fr 30fr 100fr;gap:6px;margin:6px 0 4px}
+.map .blk{display:flex;flex-direction:column;gap:4px}
+.map .lbl{font:700 13px var(--head);color:var(--navy)}
+.map .segs{display:flex;height:44px;border-radius:7px;overflow:hidden}
+.map .segs a{display:flex;flex-direction:column;align-items:center;justify-content:center;text-decoration:none;font-size:12.5px;line-height:1.15;font-weight:600;color:#fff;white-space:nowrap;overflow:hidden}
+.map .segs a small{font-weight:400;font-size:11.5px;opacity:.9}
+.seg-e{background:var(--gold);color:var(--navy)!important}
+.seg-s{background:var(--navy)}
+.seg-a{background:var(--teal)}
+.seg-b{background:#c9ced8;color:var(--ink)!important;border-radius:7px}
+
+/* ---------- lesson & activity ---------- */
+.lesson{margin:30px 0 10px}
+.lesson-h{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;border-bottom:3px solid var(--gold);padding-bottom:8px;margin-bottom:14px}
+.lesson-h h2{font-size:25px}
+.lesson-h .topic{font-size:16px;color:var(--muted)}
+.stagehead{display:flex;align-items:center;gap:10px;margin:22px 0 10px}
+.stagehead .pill{font:700 13px var(--head);padding:4px 12px;border-radius:999px;color:#fff;background:var(--navy)}
+.stagehead.e .pill{background:var(--gold);color:var(--navy)}
+.stagehead.a .pill{background:var(--teal)}
+.stagehead .rule{flex:1;height:1px;background:var(--line)}
+.stagehead .mins{font-size:13px;color:var(--muted)}
+
+.act{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:12px 0;position:relative}
+.act.e{border-left:5px solid var(--gold)}
+.act.s{border-left:5px solid var(--navy)}
+.act.a{border-left:5px solid var(--teal)}
+.act-h{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap}
+.act-h h3{font-size:18px;flex:1;min-width:220px}
+.tchip{border:1px solid var(--line);background:#fff;color:var(--muted);border-radius:999px;font-size:12.5px;padding:2px 10px}
+.tchip:hover{border-color:var(--navy);color:var(--navy)}
+.tchip::after{content:" ▸"}
+.hy{font-size:13.5px;color:var(--teal);background:var(--teal-pale);border-radius:6px;padding:5px 10px;margin:8px 0}
+.hy::before{content:"Hybrid ⇄ ";font-weight:700}
+.task{margin:6px 0}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cols3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+
+textarea,input[type=text]{width:100%;border:1.5px solid var(--line);border-radius:7px;padding:7px 9px;font:inherit;background:#fcfdff;color:var(--ink)}
+textarea{min-height:64px;resize:vertical}
+textarea:focus,input[type=text]:focus,select:focus{border-color:var(--navy);outline:none;box-shadow:0 0 0 3px var(--navy-pale)}
+select{font:inherit;border:1.5px solid var(--line);border-radius:7px;padding:5px 6px;background:#fff;max-width:100%}
+label.q{display:block;font-weight:600;margin:10px 0 4px}
+.print-copy{display:none}
+
+/* self-check */
+.chkrow{display:flex;align-items:center;gap:12px;margin-top:10px;flex-wrap:wrap}
+.score{font-weight:700;color:var(--navy)}
+.item{padding:8px 10px;border-radius:8px;border:1px solid transparent;margin:4px 0}
+.item.ok{background:var(--ok-pale);border-color:#b7dcc4}
+.item.no{background:var(--no-pale);border-color:#e9bcbc}
+.fb{display:none;font-size:14px;color:var(--muted);margin-top:4px;border-left:3px solid var(--gold);padding-left:8px}
+.checked .fb{display:block}
+.reveal{display:none}
+.reveal.shown{display:block}
+
+/* ---------- feed (ad or not) ---------- */
+.feed{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.post{border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff;display:flex;flex-direction:column;gap:8px}
+.post .who{display:flex;align-items:center;gap:8px}
+.post .av{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-weight:700;color:#fff;font-size:14px;flex:none}
+.post .nm{font-weight:700;font-size:14px;line-height:1.2}
+.post .meta{font-size:12px;color:var(--muted)}
+.post .body{font-size:14.5px}
+.post .tiny{font-size:11px;color:#8b93a3}
+.vote{display:flex;gap:4px;flex-wrap:wrap;margin-top:auto}
+.vote label{flex:1;text-align:center;font-size:13px;border:1.5px solid var(--line);border-radius:6px;padding:4px 2px;cursor:pointer;min-width:58px}
+.vote input{position:absolute;opacity:0;pointer-events:none}
+.vote input:checked+span{font-weight:700;color:var(--navy)}
+.vote label:has(input:checked){border-color:var(--navy);background:var(--navy-pale)}
+.vote label:has(input:focus-visible){outline:3px solid var(--gold)}
+.take{display:none;font-size:13.5px;background:var(--gold-pale);border-radius:7px;padding:7px 9px}
+.feed.shown .take{display:block}
+
+/* ---------- reading ---------- */
+.reading{background:#fff;border:1px solid var(--line);border-radius:10px;padding:6px 22px 14px;font-size:16px;line-height:1.65;max-width:780px}
+.reading h4{font-size:19px;margin:12px 0 2px}
+.reading .by{font-size:13.5px;color:var(--muted);margin-bottom:6px}
+.reading p{margin:9px 0;padding-left:30px;position:relative}
+.reading p .pn{position:absolute;left:0;top:2px;font:700 12px var(--head);color:var(--gold-ink);background:var(--gold-pale);border-radius:4px;padding:1px 5px}
+.readgrid{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(290px,1fr);gap:16px;align-items:start}
+.readgrid.stack{grid-template-columns:1fr}
+.readgrid.stack .side{position:static}
+.vgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:4px 10px}
+.side{position:sticky;top:70px}
+.kw{background:linear-gradient(transparent 62%,#f6e4ad 62%);font-weight:600}
+
+/* tables */
+table.grid{width:100%;border-collapse:collapse;font-size:14.5px}
+table.grid th{background:var(--navy);color:#fff;text-align:left;padding:7px 8px;font-weight:600}
+table.grid td{border-bottom:1px solid var(--line);padding:7px 8px;vertical-align:top}
+table.grid select{width:100%}
+table.grid tr.ok td{background:var(--ok-pale)}
+table.grid tr.no td{background:var(--no-pale)}
+.tablewrap{overflow-x:auto}
+
+/* rhetoric x-ray */
+.xr .item{display:grid;grid-template-columns:1fr auto;gap:6px 14px;align-items:center;border-bottom:1px solid var(--line)}
+.xr .item .fb{grid-column:1/-1}
+.xr blockquote{margin:0;font-style:italic;border-left:3px solid var(--navy);padding-left:10px}
+.xr blockquote small{font-style:normal;color:var(--muted)}
+.opts{display:flex;gap:5px;flex-wrap:wrap}
+.opts label{font-size:13.5px;border:1.5px solid var(--line);border-radius:6px;padding:3px 9px;cursor:pointer}
+.opts input{margin:0 4px 0 0}
+.opts label:has(input:checked){border-color:var(--navy);background:var(--navy-pale);font-weight:600}
+.toolkit{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:8px 0 12px}
+.tk{border-radius:8px;padding:9px 11px;background:var(--navy-pale);font-size:14px}
+.tk b{display:block;color:var(--navy);font-family:var(--head)}
+
+/* argument map */
+.amap{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.amap .node{border:1.5px dashed var(--navy);border-radius:9px;padding:8px 10px;background:#fbfcfe}
+.amap .node b{color:var(--navy);font-size:14px;display:block;margin-bottom:4px}
+.amap .claim{grid-column:1/-1;border-style:solid;background:var(--navy-pale)}
+.amap textarea{min-height:52px;background:#fff}
+
+/* ranking */
+.rank{list-style:none;margin:0;padding:0;counter-reset:r}
+.rank li{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:8px;padding:7px 9px;margin:5px 0;background:#fff;counter-increment:r}
+.rank li::before{content:counter(r);font:700 16px var(--head);color:#fff;background:var(--teal);border-radius:6px;min-width:28px;text-align:center;padding:2px 0}
+.rank li:nth-child(n+4)::before{background:#9aa3b2}
+.rank li span{flex:1;font-size:14.5px}
+.rank li button{border:1px solid var(--line);background:#fff;border-radius:5px;width:30px;height:28px;color:var(--navy)}
+.rank li button:hover{background:var(--navy-pale)}
+
+/* break */
+.break{margin:30px 0;background:repeating-linear-gradient(135deg,#e9ecf2 0 14px,#f1f3f7 14px 28px);border:1px solid var(--line);border-radius:10px;padding:16px 20px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.break h2{font-size:22px}
+.break p{margin:0;flex:1;min-width:260px}
+
+/* scenario */
+.scene{display:grid;grid-template-columns:240px 1fr;gap:16px;align-items:start}
+.phone{background:var(--ink);border-radius:22px;padding:10px;color:#fff}
+.phone .screen{background:linear-gradient(170deg,#7d6a8f,#c7a4a4 55%,#f0d9c9);border-radius:14px;height:300px;padding:14px;display:flex;flex-direction:column;justify-content:flex-end;gap:6px;font-size:13.5px}
+.phone .cap{background:rgba(0,0,0,.45);border-radius:8px;padding:6px 8px}
+.phone .handle{font-weight:700}
+.phone .lab{font-size:10.5px;opacity:.75}
+.scale{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0}
+.scale label{border:1.5px solid var(--line);border-radius:7px;padding:4px 10px;font-size:13.5px;cursor:pointer}
+.scale label:has(input:checked){border-color:var(--navy);background:var(--navy-pale);font-weight:700}
+
+/* fallacy cards */
+.fcards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.fc{border:1px solid var(--line);border-radius:9px;padding:10px 12px;background:#fff;font-size:14px}
+.fc h4{font-size:16px;margin-bottom:2px}
+.fc .core{font-size:11.5px;font-weight:700;color:var(--gold-ink);background:var(--gold-pale);border-radius:4px;padding:1px 6px;margin-left:6px;vertical-align:2px}
+.fc .sig{color:var(--teal);font-weight:600}
+.fc .ex{font-style:italic;color:var(--muted)}
+
+/* comment thread */
+.thread{display:flex;flex-direction:column;gap:6px}
+.cmt{display:grid;grid-template-columns:34px 1fr 220px;gap:10px;align-items:center}
+.cmt .av{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:700;font-size:13px}
+.cmt .bub{background:#f1f3f8;border-radius:12px;padding:7px 11px;font-size:14.5px}
+.cmt .bub b{font-size:13px;color:var(--navy);display:block}
+.cmt .fb{grid-column:2/-1}
+
+/* tabs */
+.tabs{display:flex;gap:4px;flex-wrap:wrap;border-bottom:2px solid var(--line);margin-top:8px}
+.tabs button{border:0;background:none;padding:7px 12px;font-weight:600;color:var(--muted);border-bottom:3px solid transparent;margin-bottom:-2px}
+.tabs button[aria-selected=true]{color:var(--navy);border-color:var(--gold)}
+.tabpanel{display:none;padding:10px 2px}
+.tabpanel.on{display:block}
+.steps{margin:6px 0;padding-left:22px}
+.steps li{margin:3px 0}
+
+/* counters */
+.flags{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.flag{border:1.5px solid var(--line);border-radius:8px;padding:6px;text-align:center;background:#fff}
+.flag b{display:block;font-size:13px;color:var(--navy)}
+.flag .n{font:700 22px var(--head);color:var(--teal)}
+.flag button{border:1px solid var(--line);background:#fff;border-radius:5px;width:28px}
+
+/* writing tracker */
+.tracker{display:flex;flex-wrap:wrap;gap:5px;margin:6px 0}
+.chip{font-size:12.5px;border:1px solid var(--line);border-radius:999px;padding:2px 9px;color:var(--muted);background:#fff}
+.chip.on{background:var(--teal);border-color:var(--teal);color:#fff}
+.wc{font-weight:700}
+.wc.good{color:var(--ok)}
+.audit label{display:block;font-size:14.5px;margin:3px 0}
+
+.foot{margin:30px 0 40px;font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px}
+
+@media (max-width:860px){
+  .vgrid{grid-template-columns:1fr 1fr}
+  .intro,.cols,.readgrid,.scene{grid-template-columns:1fr}
+  .feed,.fcards,.cols3,.toolkit{grid-template-columns:1fr 1fr}
+  .amap{grid-template-columns:1fr}
+  .flags{grid-template-columns:repeat(3,1fr)}
+  .cmt{grid-template-columns:34px 1fr}
+  .cmt select{grid-column:2}
+  .side{position:static}
+  .map .segs a{font-size:11px}
+  .mast .wrap{grid-template-columns:1fr}
+}
+@media (max-width:560px){.feed,.fcards,.cols3,.toolkit{grid-template-columns:1fr}.xr .item{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+
+/* ---------- print ---------- */
+@media print{
+  @page{size:A4;margin:13mm 12mm}
+  body{background:#fff;font-size:11pt}
+  .bar,.tchip,.chkrow .btn,.noprint,.flag button,.rank li button{display:none!important}
+  .wrap{max-width:none;padding:0}
+  .mast{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .mast .wrap{padding:10px 14px}
+  .act,.panel,.reading{break-inside:auto;border-color:#bbb}
+  .act-h,.item,.post,.fc,.cmt,.amap .node{break-inside:avoid}
+  .lesson-h,.stagehead{break-after:avoid}
+  .lesson{break-before:page}
+  textarea{display:none}
+  .print-copy{display:block;white-space:pre-wrap;border:1px solid #999;border-radius:5px;padding:5px 7px;min-height:3.2em;font-size:11pt}
+  .side{position:static}
+  .readgrid,.cols,.amap{display:block}
+  .tablewrap{overflow:visible}
+  .post .body{min-height:0}
+  .feed .post{break-inside:avoid}
+  .cols>*,.amap>*{margin-bottom:6px}
+  .side{margin-top:8px}
+  .vgrid{grid-template-columns:repeat(2,1fr)}
+  .flags{grid-template-columns:repeat(6,1fr)}
+  .print-copy{min-height:2.4em}
+  .tabpanel{display:block!important;border-top:1px solid #ccc;margin-top:6px}
+  .tabs{display:none}
+  .map .segs a,.seg-e,.seg-s,.seg-a,.stagehead .pill,table.grid th,.rank li::before,.chip.on,.item.ok,.item.no,.kw,.reading p .pn{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .feed,.fcards{grid-template-columns:repeat(3,1fr)}
+  .hy{background:none;padding:0 0 0 0}
+  a{color:var(--ink)}
+}
+</style>
+</head>
+<body>
+
+<header class="mast">
+  <div class="wrap">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAdMAAABaCAYAAADjNrwJAABmSklEQVR42u19d5hdZbX+u06ZSS8kISEBQu+9CyJYARUEQcUCFmxX1Ou1XLveq+i1gHrVq9hRERVRBAQBKdJBpLdAgEAooYT0MjOnrN8f37vmrPNl7332OXNmkvib/TznmUnmnLO//X2rvqsJNpBLVXsB1PkCgAIA5e/jAcwBsDmAzfgaB+BZAFcAeJTvq4qIYvQavUav0Wv0Gr1G8JINQIkKFWfBlKGqzgRwGIDDAewHYFOutQSgyJcA6KPCvRLAaSLysKoWRKQ+erSj1+g1eo1eo9e//KWqoqpF9++Cqr5OVX+lqneo6hOqulLzXX2qeoGq7s/vLYzu8Og1eo1eo9foNVJXaYQUZwEARKTO30siMgCgpqqzALwBwDEAtgSwTbQuBVCj55rkTdcB9AA4CsDtInKrqhZVVXnPUdh39Bq9Rq/Ra/Ta+JUplWhJVcsi0g9gQFXnAngzgBcD2APAFpGCrFORKhrx02LC1xcBVAGUAexCiHgxle6oIh29Rq/Ra/Qavf5lPNOiiFQBVFV1Nr3QVyLERDfh22rO6zTFGXuhiuQ4rynOqQA2FZFn6QGPKtTRa/QavUav0WvjV6ZMCKqp6iQAhwA4AcDrAUyhAh1AI6nIK8s+AHcDeB4hc3cnhCzeVgrVK97Ra/QavUav0Wv02jiVKTN0RUTqhHh3AfA6AO8DMJdKtA8Bmi0iwLg1/r6cSvRGAJcBeBjAJADHA/g0P+O9Tq9EVwFYxt8NGh5VqqPX6DV6jV6j18Z1+SxdVZ2iqi9R1Std5m2/qlZUtc6f9ntNVR9V1W+q6tbes+XPnVR1nnu/fabO71RVPUtVJ3ANZZ8tPHqNXqPX6DV6jV4btGdKT3TwIqw7G8CxAL6EAOlWeL8yGglGwtdKAI8A+CqAPwEoqGqZ3qrw+xXAMwC242fqkXcKAItFZJWqlvjZUa909Bq9Rq/Ra/TaOJQpFaiaJ6mqcwB8AyE2WkIjI3fw7U7RLQFwHoDPIkC8hfB1UrHvYyMHuO+Kv6eIEHt9MuH7R6/Ra/QavUav0WvDV6ZUdqYs9wTwEwC7UzHW0VzSos6bfBzAZwBcAKCff69HtaHmdY5DaCcIrBsrLQBYxBfc/3W1E5Lr1lT3BsToNXqNXqPX6DWqTDtRKHCeZtEprdcC+C5C1q33In3ZSwVAL4A7AXwIwG0A+mLFROWsaMC8E5wy9SU01tBhHkKykt1PO1V29ozO2y6KSA2hocQnAIwRkXewn3CV99pgWhhaAph72Z4gMjbs/BRArRvP4OjDn1HXLxpwg8/X6doZV9chrtWHOTQyLuP/l3YMMWfAaZfXF59Twf29NsL0Wkx4vkK8Lqybya8Jz1lLoglVlfVl/JIWzAi39SfRq29MU98AZYrvlx7/G0hGBDWFFhXNoTok8YXjcc9PtYzvxBDkfvx8mpOvFEChNATmVKdISwDejZBtO9N5op5hhd7nWADXAfgUgH9SuWYt3DocbcXvrSUclgJ4wClTHSrjeNiaPycDeBOAtyF0bnpBRD7G2G4RITt5Q7ok2tdYCBlz17us8Pw9i2geXjCUXtAmSIsIMfW6Y0gdorDUiFaHtEbG7CVSELUhrLGeohjbXRu4d3HIpY71FBqhsPTDLaxbWiVFcLYShmX+s2q5EyKi6xlF8rkdaWepKT83JHniDa5qO2fjzqhEfVFPUKxpDl89hVeTjNWCqnaqUNXds9aC17w8qgOol4bAmPaQUwF8GMC7AMzO2OABKtJLAPw3gFt5OMWUz3godyqAXRMIsOb+bwGAlc6L7JYiLYhIVVVP5HOO5XO/TVWfAvDtLgjz4SD8MVxrMeMMlcJnqYis7ZZ8jIytCVxLK+Js9Z1VAGtEpC9FIBdNwbZ5DkUA07qgRME1rmKrzCRBX1TVel76dI1HxnEPpYN1+i5iNQAVEVmecK8e7ymOoHc66LXxnjVm4u+PRme0LRGSGCc4uVNFyLFYBOBpGtN3icjCBHRmvfGlQwDGIpT41dAoA0w7r+WUlxuCRzooo10eS1lVDwGwM0Kp4xYIzXfGOLRzAMBqPsvTAJ6is3O/iDzlvt+XOiYZ9nV+7zinuCTJWHGJqsvQCBu2g47A6aRpKfeKrxrv13HM1LyaKQD+HcAHuJkDKURS4Yb8GcCXROQOt/haBsEXRaSiqtMB7JZizRUREo+esLaFXWSAkogMqOpbAHyMXneVf5sB4CMImci/pMJd7wrVBCHX/DpnaSUp3AqZ/A+q+jsRWdbFZygC2AHAKWS6agTVtHvV6G30cd2LAczn624RecbOLu8z8Jy3Q0iWU7dPnSgsY/yKqvYDWIvQcGQewojAW0VklUc7csB4wrM8kvuoQ1D6Eq2vn3v4CICHuIeLnLCsDzctmwwgj49T1cMAHISQbzETIVw0ha+0514LYAWA5wAsUtWFAG4HcKmILHDe0HqBTektlRBCWi/hGZQTPDElXZcB/EBELlrP0PRgrwAAdVWdqqovA3AAgB15NtMp9ydl8Had57McwFIAz6rqE+SLWwDcZoa8qvaq6oB3Zkj/hwJ4C8L0ME1Rph7B+RqAa9o0CuvO0zwEIZyXxW9moD4D4AwA93WieExzF6lE/40bWnEQi0YCZgyAvwP4ChWpudFwmbpp9wIP7QB+VyFBaN+NkMwEdJh0ZKPbnCItUpEeA+DzALaPjIU6Qgz3kwBWqOpfAKzx8Z+RYgQfX6aFNgPAqwG8JudXTEWjUUaJAneojFzj976SynQ4LrN4H1XVOwBcTaWl9LSqkbITL1D5vqlt7FMn15N8PayqtwK4WkTuiQwfidfm6L8GYGsARwzT+p4D8ASA+ar6TwDXiMg/nbLzXmO3aFXIHzVVnUYhfRiAFxGB6k0QXLUI9TDYcSxfM6mEQW/1CFW9BcAlInKX874r/Nyw5Tk4GWDntz9CiGjPnF/xlKreRuNgMCdluORJBPsrgDLRFVXVHcnDLyJSsHOCw1R3KKEPK9nLDKK57jPLANwH4D5VvR3AlSLycEQj5rRtB+Bofkee67cdGMXi4OYt2uC3xQB+1alnWqCQeheAU+kO1xIUqXkiJYRko9NE5J9065sUTQqRFNwBbUlPMM27eQDAk1EAuV0vdBCqJQHXVPU4AP+F0Mqw4r57ACGOWwewLUJZz7MArnXWTWUkDUnbM3rIr6BXWHV7lsQA9nN3APup6s3ch0L0ve1a4raPNVqlraCtdp/T6GM2X/sjTB66GsDVqnqRiNztBFtWQkfVGUn1IXrPsTAp0ODanB7XawC8SlWvAHCBiCwwiBrrxtP8NcD9q3cI9WZZ1pvytS9CXfhVqno5gPNFZCEN3UI3PFU+q6E9BVV9KffkWPIRHIRbQHMcu9hiv32C0mZEZY4C8GJVvYhKdSEVqjpDa9icUhrkVVV9DWVYJcFR8PxolQ+HAThQRM6n41F1BupwwdDe2BxQ1R0AvArASwG8HMDkiGd8DLWQg9b8OZmCPYSvJQAuU9ULAVxOL9afdx+V78QMHvX71xFE7hLzBiLjLc2TLVC+VdpWpvTeKvTWLNmoP8WSNAZ4HKFxww2Rt5AHJqww8WenFu79g7QQpFNr0wev+b1HEy7YgTDYFfz9FXCJEtzI3QkDvyAi93QDam6TGYzwivz3qxAStuCMnGKK118jHexHxfQUmjO0hyxQ/Pq6/Pj1SIi+nK89VfVn9AIHXPxMW6xRuqBMYz7wRstkKo+XAthdVX8C4A7SUDHHPkoXlSkSjN8yEY0jAeykqr8BcCN5vtgNYc7zmIOQ+f9eAPs4gVl0Bng7NBZ7IeoU16upnPZT1Z8C+KeFZIaRH9UZ6DPIW1PRaFyDFFlm/7cdgH1U9TIK9uGO+woN8QqRmgMREi3fQKehGhk4xQ68PklBG2pENt9Mb/CHAE5HCJ8V2uBR6XBtWfyWpUzFOSmCdgUHYdCtAXyRltaAE9YxcRcRYkbfBHApGgHhvIRhMOM2VFaSwDA1hH68T1KJFjtgbsPnTRH3Etb4XyrPJwCcLiKnIpT9PIFGtpfFbNdQOLxPVWcz021EBpRz/d4b2p5wzLjo0LOIXBFG4R3G79tYhqsb0ZccGlChEPglgDdxwIJ5V7Ie1ldwTFd3XvC7AHyPiqtbxstQ1lh0SrUO4P0IyXUvZQlYfaj7R4N1Z4REvjOoSGtohIhKXVIa/pksX+MUAGcCOFJVJwwXZOr4sUCo9BjKsDyGSMkZYAcA2IWyZDh7jBsiUlfV7QG8E8BvALyVfxtwBk6hi8ac8a51uhugt/oWnlcdyZUIG+zVUmh6BlLVCfQyd3IwUQytmjbvA/ALCrU+/l+1jc0x4bIFcfokK6EXwL1U2m3DIJas4hh9IoCXAfgpjYUl9E5/TW/zGoSWhwORl9CDkAhxKoC3qupYE94jLMAHELpObekMmizi93GdrQEcYDD8CNNhDAO1C/mqM2wKFKDTAPyICEMvOk/e0QQosdNnLDmh1EeP5XR6qugSrXSyRnUCU5wQ3ZfrO6BTi9+eSVWLVKT/A+A/0Vx+4MMQhS7LNpNRAwgxy18AOJEe2DCDRlqisTQXzXOZs1AM24f9ARzqlGyhiwvzcs/gyl0p284gglLpoqeXRXdGb2V6oz8kwqfDgGStP2XqSg6KqjqOrvgxzuspJQg3s3RuB3AalQxsgoyItNscYAuEeEoFyXVZ9ztl2hZk7b0aVZ1C7/IchISnPoR46a+dkl5JuPePaATHaw5OrSPU276ahkMPGk0nhhPm9XV6R3L92kKRemPAmHxPAPsyBX4kjQBvfXvo1v9fzXlN8bNJJJTLTnH9D0K8cijK1Au7aoLS8vW6aT2hvXAvU8FbI5Cvk87NACtEcGEn0LJ/1RL2NQ2GK0Yew14ISYbbEpnqoTzIa4gXCRHvSuPmGDRqx4uRIu0mzF6IoMEyz24aQvb2W1V1su11lw1fe45d6Hj45yyk0GHRKX4rOdxLVcc7uurWVeS5WE30fgDOQogzVyMeGk5l6mWXICTq/dQ964g2Dxluz9Qf/CwAX0AIAnvBpFi3nut5hFTwtR5KbfOyMpfNWrzvbgBL8iYfkXn8CDeLZZ1KgrJaqa8A+L2IrHRCqYBQz3oGQmyx5p69ROt3e4RxcXM9MeQRPkOAlQwmfC2AOR0IYTvLfRBiwhhhq9B7wwUn/OO6M2nD8zK6nA3gHQC2cZmz7e5NrIQqCd6qj93mWZ9XdtuQtyTByOnU4vdF9Un7mFc+9AN4I0J2bLFN2jLFsBsh4xclyJWRvCzuO4GG/lsBjO+yR+yVxJuxbte2duTyfuTpSrf40dG/Nds5lA7DLt32gNt41gJCVvl5CMlHOgRjcsOFecmUUxESbKYmeDtx27hnaYE+YJ5ruwLM6otorW/dwmN4ECFuWmiT2K0GaUuE+OinHazxKYT4ymLXzcYHpR8C8DmnYA0WK/PnsQBOYbyjjGFMIHCeqSDECjftUJlWaSgdqKqbgB17RogO62juxFNyXoVPlPKeYJ5nsvZyryds1qnQjLNKfaG5T47wnnQe3jPamoSQNLYXjbl2hW+SV9Tj1ll2Blct5/r8fheJeOyHRiZnHuSnTiH9aQrtTpSoRh62f7XTwStuXzeZyNPhDmnrFj8qz/QIhDhgHe0r0xoN8+HIYygSHXwRYdWtHP12ch9NQURanY+i0TnuScpc3xJwo4iVIgGmTfJ6alQmewF4O9JjTx5mfIRWaDcSKubwleQpCUIR8GKX0pyHqYoIpTkDTFn/PCGo8RQUH6WlttI9pw05t2dcizC4/EYABzthZcTYS0v+aoQ4a4HW1nAVwluZyIEINXedEKLt744U7OeOIB1aadVZ3Neag2kn08vfByGNvtd5hpJjX0Aj4WBV/TuAZ6ymuA1Fb+e6GsDZAG5CY7h9GaFsay4V9r4OIi3mFESg0H0jEZG1kbeeV6AJjdlzEMq0rJh+EvloT4REswnRZ1L5hGdQodK5SERuaZXZ61CYqQj1la/rQEjbvueFGWstlLVHz0xZTQXwHQAnuEYyQ+6exoStlznZ1alSKAPYTVV3QmhO0hVZISL9qnoQQie67SJEZcA5AHmME39GkgOJKUS0UKZXeomIPBPVXm9UnmkpwaoanPRCz2oOvdJxKQrSIKUeQqBfFJEVvglCBwrEDmVzeqdpgvIBKr0sK7HgDrOHhDRJVd+HkJq/Ob2BxVSkF4nIsiSPmodsI+EW0zu9BOuWBlnt5ptF5CpV7bESDd+c3Xtdvj6zA+Yt0ivdZIgeTZVW6mtE5HdeuIxQN5Z7EeLRXvD1UPhPRgg1HI0Ql56MZpi91XMfAmBnEVnEmF9eg8OnyFcQ+kn/CY0sx0K0xrkATgBwklNGtRRj0BsxYxDiif/janTbUUC2xtUIrTovQiMu28PfpyLEDF/PPdwkQwnFQxLGIpTLTEDIXs+CEK1z03EA3sf7t1Kc8b9NNt1Jo3UBha55MpuQd3dHiIlv6taKjP32fzOI/fOq+jHW/VpsFc5DaveqImSlTnH72ykasgOA14rI6W0agfB86zrOiapuQ/p8MRodmTQDgtcIPbL32XcuJe8+BeAFhNpLpRE7lejins6Iq7lz6iG6+IsRbmM5Ip7pYENmEtYBCLV7lRQr0SyT5xHaBV7lN6VDYrR7zKYyTYNJFjjmyoISrG1Zv6oeDOA9hK1m8T33IcSsLuZ7JK05Ng0EMzjupPB/AwnFNzsYA2BvWoC3kZj9bNe6gyGlE0vMKbgxAE4k8VbQedKA9erdVVV3AfDgCBG4rbXqGpzbNUAY/xmuZz5CbeYXCYNVHIRZTFEIdYREkK0jGK1TQTlAQ9OuPgqQp1X1QYRWaXcixOXGOuhVUp7daHQOgM1UdeUQhPDgBCBV7bcifO7hCwidmIxv3oWQk1BrgVKZQbElgM1EZH5GjoIZrAcixKqt2UqphQfq96EG4HcA/ooQUnkSIZbW5/rD9tLjnkal+mKEGOh2aCS0SQatGR1UEWp//6aqv0R6omNepVUgunOgQyg65Yk69+9VqvoDdDhMw51V0fUJeAPWTeLLpCk0ErlM9l5OlGYR5f9KGlrWNKGX9D+Fz7EFDZ8jKNtBA+laEXmUZ5qnM96Gr0ytRsq1sLK6Iys3KCUQqVmR9yPESgXdq5nbjIfXj+Z6VlvDI4TE0oheEFpj9avqFFV9Iy3Gg3jQAwhtDr8lIpe5LMU8p2h78l0aG5PQnIw1QMY+WURuplLqTyH0tvfMMa/B8Ns7L6jT+Io9+1wAbxSR/3L9U0eCsiWhtVmTNyEiTwP4jarORUgam5WiSP3nzbOakeDVdyLk4prVpoQhEXlMVX9B4fHvWLcWO03AF3iOC4YIcZlxVnDPN9iCT0SeU9Uzea83o3W3Lnu+WVRc8zNQkjozUE9AiLHmoUdxcmQhQhzvYmu76HnFNUSpiMjzFOLzVPVGhAqCE/mSnKEAM27fjdCf+Abf7jQvL7p/jiXCMGWIvAiH+G3NEMJ18T1z8OUgckNFehhl4AzK1Z42dEWBxs2fiBbca/2P29irK+l07Utj7mHycwEbWfZuXpjXiPBAhOxODwVIglJ7FsAVIvIgIc2hbkqN3ZI2afG+BQBWx15dVEPVr6qHI8Rt3uLgoBUA/gDgJ4wDlT3k2gJatfipEt64hd/r45UFwn4HquoWXMduFDBjEGpYFyB0mFlqzbg7EKJjAJzMn3mFR6vYxhQAL1fVrxnkNYJNtxPbTHIiDFwd7G8QklpmIz3bMa5dneKYVoZg+caohUbf20Mv4kyezYycULRQWZXQ6AjUmTYNii3uEa1EnHoJd99IQ3B6TtqZ6nhSEgRlmQL75QiNT6z4vpVCqTq47xsAfsUuRcUoTOO92IILmRTptV6oqo/y/ceidf5AzXnC+wA4XFXvIVTuUYM8e233mEgDpYzWCVet1mahhVk0yq/JQs1aGWqsoz+RiizNOUqSBwV6nJci9L291A1tKDmdUcO6MVFf+qIi8giAR1T1EjpDfSLyAL9n43JFW8C8HhbbktCJT6ZIKl4v0kr5rVMInUvShsc1g94eMmDLh0WkSZn6uAK7NR1OWPdF7nMPAfg9gB+LyJOEFyrtwDreSwHwA3q7c9Ecg1J6J29ESFyZQQjoaP4+n7GC3zDeUMizf775NRntNTm8n7iESVKexSz17RCmXPx9QyBUN4SgitDf9XFVfdx7rRkQKpygG0/IU4Zhfb7FJBBiSQ9RCfXm+JqiKV6nDIfHYgl7+SBCu89NkZ1xKg62y8w2Jm0ejdBoJU8Wq0G7iwD8n4j8XFVLDiGqRvtci/IO6lS8JfL+var6Je7jYVh3tnKMxHi6fy0hx+va8U5trTT09kAoBfKld8UMXsySzWZATADwElWdRVhU24if1onODajqEdwTH2aSFtBuCaEv7h8AfJMQf5HPahnV3gGpJ6A2Nmu06JCFuoj8KkGebbRXIRYIFFRK6PCwyLKMh7nWGMu4lhaHdMFVt3vMpBBCggK3FmSLrHk24wFKobYJm71/DsDPqOjqhIRvB/B5EfkCFWlZRPpdUwnNKzzRmA5zLYVmFeum4E8DcBxC1vHvReQUQn/zCbN9FiHW03YGLhtpHM698oIhzUPrJyxWy4DF7fOTCPG307VquBWqulCEkMmzBltLZCn3elir2562a0ri4+KPor2uTuNGYK9tjSvQSODTNngzTTlXERJm9kRjEITkEPY1hOzxX7qB3oP86F+ODpr4VUSq5s2KyDwA/8e9zzJQY2V6EEJjfEmSjxnPXeA6ppKXvTeWhpj0U3auzZCZPslnKkKcsxgZE3muOruyvRmNCU6lDM/Zl3f1IdR/fo6KtIcyr5ImM6Mz82dUs3MiDxetDNK+619GmRohc8P2ROg8lMQQvuvP3wBcMQxu+gw0Ru7Eg37rCEkJJhSMkaaq6p4IWbpnE5O39S9GSGg4SUTOpSXbcYKAL37m75chJHh4D94MkbkAdua8vjIV6SonPA+kQmxZ22leOJ97FkJWXi2HEKzQEzkL+abIj0Mo+9nC4Lb10Ns2U7F2eHaDym44m50z1GGlBsipsATt1yQOxWCt5NxDPy2pP+VZLAxwHBq9aPNMEykDuBkhkW/VUI0ceq5FEfkzeXItmjuVZSEYSmNgZptnYMbdbKJEhRbPbNNG/oqQTJdHiUxCyMIuR/dsddn79yAqBuSvMy4hTGL6EULNfRldmrZDRVvb2BVoqjKl612h9bIX1i3i1QjG7EeYzHEvutdbM80z9Uk6RcKiAzzgKazFOhXABQgt5KY5b/QxhPq9kxGSFQatqyEKcy9ELud9YijVBMYr+d4KQtx0unvvNIQkgzzeqbVoKyCUsRyag3lBY+LXAM7PCWkr4aXjc0KU6+Oa4jyPPHS3BsDayCAZbqW1RQKyk3Utw8glYkzjKy/f2pDnpGcRGl0HkXerOYS2tWf8o4hch0b8cqiXQe6/BfAPNFoJtpKFglBqc2AbSsPHSg9F6zwPo7kXaNie1+JeXobsjlATX0Z+ZV+nJ3g0GmWGedCCAsJQj7MA3IbmzOSNOrY5UsrU/r0VFWpStyOvNK9HqLszS6aOoWPfdr/pTpnGMJ5SOQgJ+H8RYnv/jUaqv9DSvZyE9GPnJVTNgh0KYTjIsYSQiPRoBEcbfDQZoRGCxRregFAGUXF7N5CTQSyONBNhXqO0wbznI5Rt3NPCO7X/n4CQsDABI5xpl6borOMTeynPjgRAqz1YyozqocT226GX8fQISjm/s066HvZZuNzHHZDeYSxpfUv4StoHJe/NRHMf2iyBXUQoIbrLfYd0iXaKVKR3t/G9ihB62aHNrkOWY3JCjnuZLHuasukiNBKeWsnEXoTRaOM6SPI8hDK1hvwZzr/gGkvR5zaqzkTrS5mKU6bbZEBOtrFXUTAbfJYr5hg3lXaTJXzMbibWbcXlvb5tqEDPJRHHw8NvQ+ja9C4A94lIH5XoIDbv4ltDZVzzcm5ByGwuResdQ2u3lwp/L+dRKT8TK+LUM+O9tkRIbEpjDh/3GEAoXVrA3wchNTQKqJOan5cQ6jN3Ne90mKDRWLHZcAXxtEHjp4fnd0KEnhQyvtf29flWyjplH2vRvyWi5QJ/t9KNAke/HeMMwnrOez3UBoSHFuduexevr0gPan+ur5pBQ77TzaMIdapNRqgbX7iX88wKOZQpCHXe5dCCbsF+9l3Xc097WpyB5XtMzGlgIEKm5iKERaotzkUQaqb/ys89Ryi1H83DCNKMM6tpb8dL3x0hJJQ31lpACEVdSyTCYp0bcmyzkOB41ds4RD93uKPnK6Uo01kkvgE01yF5xuoHcL+IrG23sD9KJfcQkQnSEkKG4WD2ZrRJJQT83wSDNfXuQYhBnEECXSYiazoQoJ16Kw/Q4pyFxvQFu8YhjJ56GwWYWeZ1AA+IyBJVLUXNAJK8CajqGIT09i3pxcSJBBpZ/0+QeeuqWqEy/Qg9Zp8sU0w46zJCSdH9ZPzh3D/rGOSHy/sB6HXWDB+GUBe4uYOk6inGocV+FlGIdQJT+cS7HirLoqNJcf82/jgMIQGuF/mgeyAke8zP6T1kXb1cj5VnlFR1cOKOiPSp6n8SsannWJfR1+MisjwjdrYjGhn4ea97RGRZu7WdbQjXh2kE7NjGWc/M6vSUgJJsjdAExkqa0mBTC5EtBHABn7mCkCn7Umd4FTKU8SYIM2b/LCIrc5SsFSgrJiH/AAZBqAW9F0NrPDGSl2/48WFVfR2AchsZ8WbElCm/87YDTVWmNVWdHsFnSV5piVbLQmf1NhURZ1jWg8lErpMQKCgHR1y5uk9vbQiaU7btgUuEc84EcCWAp0VklY1XGoHYmBkHD1BoJwmkHoTEqEnOSCgQirrWjYSr5jj0bRHqA5EBu/gpJgsAXMg9rVCp/IOMmVXqYN7F6xEGpD87TJ6pEe1ARhy7oqrbq+pJCEkuO2DdyUVZcOId9FDaslgTrPkBohxphLA/DaajCeX73r5p52lNPm4FsNbVWHay13UAK2ncrnXIhGV/H6iqb0MIEUxpIbw9393jUKh4SpRdc5GvabwfivFMrKC6xa/cw/mkf6B1bN32ezKAzUVkXov1FBgu2o48UkFyEwTvhKxF6Lj2KOXlWlW9gqjJtMgzlQTDUBAyhq9Bo394q/3aEaHmNq9SKSAkhT2PnOV6G8hlRvcBNCCkzWc2/VPuhPdKjvCMMOYQYgXS27MVEXrSPuRd/mi8WRocoCkW3taquhVhxe2I8ccK35ih6NZxG0Lm7s20clcTeisjRwOGrpxg8LTLFAxLMg56KhoxT/P6Lic8nMcyF3qXO1OZVpGeem9CcDmAO9kYwgyUKr3TAynwqykohVlqmyDUuT2F1vGdoVz7qOrx0flOoAe6NT3xnQnp19A8cDlLmZYRusfMb6PDVSwIbfrK/vTurei9jEZP3q0ZItnOwafe4s1i0H6GLAZcvWq7Sh8IcbHjVXVHCnbrkTqLaM/mCHHBscjXJMSEyxUAbmDyXpp3b32uW4UrzMB5AKEWF5HB0ZUkJIQyv5WquqhNhGQiZeC8FsqqTpRodzogAy0g5DK90uvcEBGQN6/mGU3JoGeL9R/M+y3MAbnWSJN5J+MUqOiftNrpEWrW0g1F6hGtThqeqOOZtg2IUgIzzkHUdi3BizDhso2qrqWFtMq6YjglOY6CRhzEMY332IwEMYvCejp/bsZXXGwd17jeh9B44VoAt1qrPoOghpKp27lOlQHX97ScQtgmaHopoM6nAZCoTCNP0JpZvIj7WskQJAaZPgLgymhUWw2hbODjaMw/TWvkYJ7NyQD+Ro/fINduMZnR4dEIjUL8mY8lzYxLUG6++D0eBeh7vc4D8A8XkmhXSRktWszqSEfPRf7/VOflwyEPaUkb8YzUJwBcjOb2mKU21wkK4+O4xiKFQynBM0nqVhOvz95zH0LXm6Utzn6qE/h5Wgg+754XyD+rNq8ytTUsz0BfkvZwfBpcHbXxrCGMmDuiBfpQcIjTfAB/9e3z+Ps5aMTY0/bPT0E6WlUfEZHnzfhKomuudbZTEnk6Mj2ORk7Fxpq5q0P8XKFTIeavzZwyTYMPFyF0C3kJBe1qhJKDVWSOfjS6zUyKDmoKGll/05FcdlFPOXgj2AqAX4rIt7xXjCGWu3Tp8B5DyJydlfAMvvPIkwitDO8yuDtDOVlheFVV90LIDK4iPaFAnEdxL0Izaqt9NIHwgqreEHkpxQxhcBBCreyTpqQ4Uq6bENBMh4ok0QRaKKjY6KqQvn4F4I4orNCu1Wv8YsZe1holpyK0frQrELr/xJBnp5D5RL6SPGxBejOBJFiyCuCnAG7OQaftllCtdAZhN5OPrCOVT8Cr5UAx/CSftGexNpRF8uO+hBWz5rxaWGo1gH8yXBIbdbfQU5+J5C5l3uDtp1F3Hg2SIr3ktNyVCWgvE9dP59mYlKmk/D4iVxLDb+IUYFoc7XGElP/JXbAeB9DcdivPtHcBcKdrFKEbQIaZxU0Xk8DnID0begChmfc1LjMyS5FaL9JehB6iO6I5qSEpvlZEqFm8k0kjTeUghOvORei9vBPSY7W+i9ArEWKPz2IIfWNbCPFWnZna+a5ehBj6HyzJJSvBa4TXaOfWD+AvAM7q4oQebeFh5/m80dNZAM51YxWzhGs58golw1AGBXZlmJhRor3uaxPqLLX4e50o0b50EAaQ3VGoiNA05dqEkjylYr4aISN6KtKnIJlDsT2APVR1Xo497HF7n4cG1mAjbzq/Pq5CgiafiEaDaE1h0n634RUK4ioaHVL6+LMSvar8OeCEt81aHMvfV9Oz68sQEFbTqtZpZgPozuPHoY1LUaTmLf0awFki8qy9JyHDOT6jKkLi0UFoxN/ShvKaV3ormbdpKg3XWUdIQno8AwWImfhoANsPYwzFK27/aqsbjdu3exHaNT5mjTo2kDX6DOTLEZq7D3Rx1J0kvNrdu5U0tr4sIk/n7AVbi+6ftTa0ubZ2mTGeONTbJg3VM/5WJAL2EoTcDg/5Z+3rPxFyPJr20s0b/Qv5sZSyb55Pa0QH59JAzJo8NdCmtzZumIzl/2+UqbdisloDKhVfr/sOI6QyXz3ud/8qub+XKPSXIcSLHiQceTZCF6PFGVZ2AY22ZnkyiIfbJTVLdSJCcsAOGXDSLQBOo4DqIVNkGQOKkEhRRyi3OBDNpSSSAvXVybh3GbxldZvuXgMIMefFaG6D6AVd3THvdrSGezYA2k0z9AzivhPABxF6MXsDbH2uUyP6vRTAN0Tkri4rFUVn8Uc77wUIBfvvIZ2WcyI/fW0q0wkY3u5adp8xaMRy8+xzDS1mhxLpOQChqb0iu6G+0Pm4Q0SWEGWSiB8LHDlnPb6zQhhmiL2CsibJgPDXCrRXbrUZXJb/htRGdASueoe8k2gB9aC5JiqJ2WYjxEOLGQduTF1zHqy9ajzgRxCSG+4GcIuIzCehvpuQolcYMR5e95b8SGecuQSEglNgb0YoOUgzAhShW9PzJNBKjnWbIuwFsDcaHZ7KWZYzQkz2TsJHvfEsVVU1i/gihBjsYSnKuRAx8JEArmest1vWay2HFxUnZfi4njgDYimNsk+JyH1dLo1qlTUc80kSP9RJ++cg1EM/Rvi5MkxCoVXzBNv/NQj5DvcCOENELnGlZXnXtgTrTpiShHXZWc700GtWIk2HBq4pgvEZPJl0reYZpSnoCkIjk93dHmfRRYkIxK1mxMY06eK7lxN92iaB5n1MF4SX91HVawCsyqD1JWiMuWsVM7ae3+M3IgXYjc5ZMb/W0F4CYOKbW/V5XYEQK+1z3mESw6ykx7MCIcb2JC3ehbS+HkWjdMD6zVqB8GRnsaZtUnEEZ2ym7UXBefFvAPAJQrGVjIMY0wLWTYKPB1T1VQjxlFaZkhYXuRHAPdzTYoI3KUzrf5jn8pIWwsaygF9GQXIXutdL1ZerpCWfJc3R9dnJVYSGGT+lkpIu0odmKM5WcKlvKl+hAXk6Qia6DW2udnGtdadAa2jdf1moRK9AmLB0FUK9eaEDpfYMv2tChoDzSWCbo9HNxxLsuuUFGfI1HiF/oZ1zXoH0BiVWC/5KhPyFvH1ubwdwL3lOVLUWe+s00K8nT26Tk2eOAXCNiFzt6si9krY+5n3Il9FbR4jHziGytTF4pXEfgirab3wSt0vMs1ctlWmrHqcrEFLvH46EYBrUBDSXhGj0by+oi8zCG4/WE+DjrkjrQ5ka8b4XwKcRGkmnJQQhsirbFeQvR0j6ytP70yC0VzvFqynr6EPI3l7dQgjaXlvh/6UAlnZJCSTNya2nGC9+cpAJ5vsIS55LIy6esdhNps0aXydu7X4SSZXGzU8QEqKWoDkZrJsCywrPSy34018VhA5XV2BozcwXRnSUVSpiQnuTyHLs1plZTfa2CDXAQP4+1ssBPOXaJMbv6UUI58xEco12zGc1Ksf3kX8qCd67vVaikYndis8rNLD3VNW/Z7zvdoSmEpNy0rgg1FPfhBCGK2DDTkjSiO8uJAowHvlDOz65azeE4fJt8WUphbGQAbn1IzQMXzkUQer68HrB6GMceTJ618/JNRpT1AB8CM31mn6mayFlzwtt7FFVVTdHyBrszWFxGeG/FI3GF0mZpt6r60GjDlFaCAYgzFC9DKGvajcMGrvnKir3pGSKKv/+AgXOowgJVHfQi1hG2lTneXfL2/PlNn1Yt3GFNxJXUhgvpsF5M734FwCsYCu/QoKRM1SBZTw0DyGJZS80+rG2EiCTaSDfjzBppdxh1vNDPKOZORAdS5LbNs407yKfCkKTj53aVKbPu7aJlej7avRKd8qB5Pl7vg6NEFBSZrU1YLEmI3lrdQUhdrsDgIcSEIU6QueqVchOUvLfWSfSdiVCTsWG7p16pMoSuf6A9lohGi+Mobd/bCdQSHwt48YneSlCYWIQZTGCK/KajDZ5ve6Sh3wGXdrECY08rxFrdeU65xh8JAi9dj9ARVqLvKc0AlzDx83jNdgBH0UrPq8RUaQFPG4YtmKAAmp/xtVKPLuhjDUzJvgBQqazIDkJwGeP9yO0zVsTCTsZhjIp303q6wjdv6op76u611qusT9ao8bQrouZdQPe/ANCb+rTuU89SC+LMHraCcDHEJoKWNlZnd6dZHmNLmRxBxoNElo1ArGfh9AjftBK3bpVHsR1HUjPdKAF2mW8vRQBim9SyjaJhud2PJVXvQ1+HI/hiUPWiVpdKiIPWlONaL/vpVzPIz/EoQaH0cB6wRk82mUEoRtXrAfWWie8dtepqn3kWxkKzGs3fQqhTtLGbsXv6XeEWh/iIF91v9ddG7W0mj3PiKZMMUKxUyvEr9Di+SSA96DRjq/uCLGQIrys5KDSzh6p6qsREo/s3u3CH3k9r7xKpQxgL7ase8RZ1NJhowH70EIRua8D78PT03DSQRXAYyJydydrNCMyhf67te4yBecl9E7fRkVSQnpSkJ3rHgizgE9BaMxSi4y6VjT0FBpZ+DVk17YazRyJ0AVsHgV2f5c80rqqWo/WtAb0Sc+wAKGyoAndcN85lzBgD9qPy3WbHw3N2BTAAar6BwB9kTwscDjETQjZ+NOQf0zcKQgtWv/EWG/NPfOGDPsWeV424KEdhdxpT+x1siOB7P6yGKFNzCMUJ2GEaqEMlhORARLu1+mRbh4Rpim6tRme9QtWF5ZzXN1+tILLbTKkh4Favdr5PoPoDgTwUj5LYYieqV29HL1mr0LGa1DQxUpqmA2qXlXtbbG2xDWOkCCpARgrIs8jNAb5JxrxuXoKDXkj8DAAXzJjtZ1exuSPe9CIs+WBVacAOIJ9uatd4uki6fLNNBBqOYxQk2vzANzqoecI8XgdQo/oTkuPus2Pdu3LVyzX6/RWL0BI0MsjQ6y8bAsA/6aq+3K4Qw+62/Jx2ES2H42Z5+U/MxT3OL6eQ6P5tOSEhocDutAMq06RXprTdUXKGX4VVd2bivTfEOJRttY6CW0eQuC7P8War6CRJaitrGsy71uR3U1pJC+fYLMZQiLShA4s6izhavtZt9mJKS9dT1CT5ljb+lxjEY0wzB30NJ8l7bXK7B3g599CyLfXITLSmlVUEIZdP4pG3K/VWqsIzQdOMKU+lIQs63Klqkcg9Myd7O6Vx8u7jw5FAVESG9d1LELC3oYwScVPO9kVwKvcYPRBIwCNJKRH2vhuC2e9AsDHVXUnEVmN7B4EbaEH/2r1q4UUmDerYUKP+1yhWxviIF5TOrUWUOPk4VKmzrMoEX6eqKpvAPA1hIHjcNCuWb13APgiQrOA3hRmW4pGY+9EYnL/J6o6FSHZJ69AGCpj5qUZO6u9AOyH7D7Bo9f6s8z7EeDe76I5OS4pjmlN8e2M/wPAiXBJb26e7jp8z/sVaEw+1CakuSmAdwB4vRkhqlpOky2u2UHB/dtK5aqquieATyGUqfnJQmkImKErdwK4MVag7tkORIgtl9BZi8tu86MfhTcRwN6quikNkqYENxFZgTAp6jFnONRbGDqmqF8D4JOqurvVHLsJYbkUZ3ROJZc3I/8qyrXgmYHZa0vRmDGYhDePQ3txu04IqJJw0D6jskjPsOteMg+0jEbd21YIpS+nIzQ3WOusM4PPrgbwWRE5FyEbbHyC0KqhMU+zFdFZj+KjCCXHzJMEUfmSDe3wVcuAAv397fm3AXA0PehRRbqBKFLP34TnzqQgTSs7glMO9rMHwFfpmRQj4zmNDgtMCLsKoatZnixdgxR3BfBZVX2jqk6l0BYmuJVMWbpMaOtXXeJ9bYjDrgC+jFC60pODb6puXy4AcFfUkEVcUs870Fz206pZQ83xVCf82GpEnkRr2B3AUYS4feyvzmeyxLSqO5d6BgJl3z0RwEkATlPVwwFsYuiLoQH+fFyYpsS9K/L+IiI1ytWpTOQ6yt1ro25hWIgEufIgnnKQT3zNxLrjroaOH4aDydMA2yyx6d3efNeBpR/AOE6EOI0e6ZbcEzMkygiNKH4P4O0i8ldV3QEhzoAUxr3fGSjawtIsEOKd1AJCTRomLB28Cs4azRM7qHNt+6rqzFFlumEqVvJ1H0KP4tta0FISr3+OimmQrigQk4RwnQb5XwD8PUEZpNG8JR7tjtAh7F1MbpsgIlW+avRm6nZ/+xufc1OEcrAzaPSW0DrRpujk4EP0SpeiOURj3zGNhsXEHPtWw7o9nDvhR68o6y2UqlJGHRkNz1AnWwcAnI/Qca6M7Ek3/rvt3scA+A2AU1R1b1XdTFV7Us6n5v7fzqlXVbdkhvX7AfycBtT26HCG6IZ0lSLP1Fzthyj490JzvZNZKWMjOKnb1xo0mjNrpCRs02e79Q+51tFilLSoNkWou/tPhLR6K3WwBvN9CPHRHyKUcxSpiK3dnzdUfA3UPUgfIGwZzfZM2yIkFORpAWYKsILOW2t5T7uew+v3DPx6AD9G9zoijV7du8zzewYhA/0nCFmdeWZb9iPA+B8EsERE7nHeYRLv1xGSfxap6sUIXbW2QnbNpCmeMu+3KYBvItQ5/p+q3oxQblNx3p4Zs2XKoi0RYpnvpoFXzWk0+OYaP0IYM1eKjACDwI+mAZ+Xlzru8RrJjdjAzlJ4gjBRaneEchhfJ2s9vi+i974D8nf5Mbi3SkTw6wA+ghAfv0RV5yOUUw5EMsg6xJUREs12R6jRtbmtNa7j7Qghsjx1sBuuMnXNE8YidCNZTmU6j8o0iRjmquo9TglpFxkfhFIHMiCsAuHPIcHNfu00JsbzcE+nNW6lMAaZ1Li26xASNB42KInQxX5oxGliAq3QIlzbom6vRijpRDTqRPMIhQeIKNSHYFyUuO/TEVql9bRgsBqF5TEU0hvrIOF/ddjXjK3rqTQ+Qa8zTZB6GLOCkBz0jKp+BSGZyb6vlsC/NXpGFwLYE6GhSVbttZ/x60eF7YPQ3nAZQtMLSwxagxDHnYGQmLcXwoBuOGEOtG6LarxWRGhMcDlrE0vOUFDX2/cktG5x6nn9dsrSYg64tpWRPBuhHKfV+4WGxYkIHdlAmNr22JK7zuH73odGz95W8sXTUR+NnncjhMAGEMqJFqLRQtYcr2mUETu7vai6c5oO4FDK8yfXc4vYIXumZRL9JwHcQNjyIRKvEVxMmLsg9INc3k7qfBvKdCXWrTfTiMnnoDkmkluBuvcXWBeptJQ+gZCpOzaCV8xaup+K9k/OUq47z3RXMlwF66aRL0Gj8XxiYwFX0zaOlvnYnNZrP4B30Rq1LLxOmNeU6V5Ujrs5L7WWAatvQ+F3+6ju2gBdU3YzopL7Lvn3TWhk68axP88j1vDh/aThr6ZBci6GVmCnp9/xXq9DI8knqfa6kAC/2pqmE749DMnhDP/ZVk0ZNPJ+lArvvwDcz3my1UhWlKgM9kW+HA1FiBcfT0OgU7TGGzOHI3Qby+JBM/ancr/GIGQj+7yXGnt0P0GFuhuAF7uzifcWCYaJdQnyV5mybxesG3aKY+wFd062L3tQKX8OjQzvtuT6hnAVELLTfkEBeguAxWSKRxHappWjB6tTeE4exnUtT/BM4zmIReSLX6RZfMY4E+hlXkVFOt4pDyt5WUhY47UIiRxrRGSA+2R1l4dTwYuztutO2d1k1liS5WVKnsXRhxBeLiJf8/nbaAANiMgqEekTkf42X332XAgZfxcjO0nBM9cshPjuqGe6IbqmjSxJg0k/RW+slBOKNCX4QQCnkkYKGcrbahvvRwiDPIT22yXGvG6jG/14x9ytOdEcA/We4kcB3BblbPg9m0LDo1Wdt/3/GsKfK8lXazrgxX4RWev48XGeVyvHxZ5hMxowSRmypjhvphFxL6KSNOTr/Z0oU52DZudTRHqilsnOKYR/t+Del1rs9QarTE+hi70lH6ZCL+sJKtcYMlRaIBNywCmdQFIglLQ6YUPjtcy2GEdWmrbLMiuDUzoAbKKqnwXwN0JRu1ORWllODy3x0xBigr8SkScI8xbd/awL1PGEeGsJ1t1qhD6X9QwBZEJtGr3SQs69WomQ8FGhp93UMKCNl2Uu2nNfgXWTMDSFsSYiJGdM+f9s9uHG5qFaSON5hKS6mxyS0eqqIYSB3q+qb+Mko1ILwV4HcA2Az5Om1mfBfzyft4AQpzsfoWtQXD9pcOMkKtNShlLwn1sN4Dx6gaUh8qPJmWcA/DnysJMuU/ibAngjgGqC4a7OW76ehtVTGIak0hyXKf8qZec70RwX36iuAkLA2qyR/6alNk5ErkNIpUbCw+3klGlXNt/VjBXJeGszmMLuuRmAMSSYJissoaapznT7rVT1vwhzfBghwWIaPeECoa/7EbIfTwTwPRG5i439y86aL7j+xDMIA41PgZX6EeYU1rIUPp9jU4RpL3kzldcSdvbQbu7OH74DCBoNCapEJm6jks6Kd9kzzkIoki9h1EPdIJWo8xp7EKbY/BihkL+dEpbtAHxAVV/BkEUh45422eQvFNorsf6STCSCSU8D8FPWXyZ58hZusd6+rTo62fc/hpBoOFh+4ht4tMmPJpdX0ihZg+yEIftcL0LYZduU87Fm+jU6Ex8gr5fQHNYaiTMp80wm0SHZBI12gBuVYV5CaDZgqe87IhRrH66qC3goz1HZ+APbBI0OQN0cvGwC+jk0hvMmNcw2ApnNNdpEhIJL7rGZdlDVWQixgUOJ7e+DEFuw77ess8sJb95N6GelU/R+dJytocDOSG9CY/5gnH1XQUigeDItTorGuKjJ9PAmOSOmmLBP1kOyHyFO+ZiI1Fo1JM8hcNX11n2BSnpfpDd99v9nSRp/csOkR5XqhnkZHV5Iuv0EmieVJNGdhxj3BfARVX0CwHxXlxnTnpJH1qrqOeSFLyHEIONGH9ICSuxUnvhQTJkK6WsItbdLaMSanLAcCuPH6QgtCS1vpJ7Cj8YHywjxrkWjf3lHz8LPegPoKYRQ1JFYtwTOX0Uno08AcIaqDqC53acZQTb4/a+quprOxfEODi6mIFHapTMSh4qUiI6+C8C3HLxf3ViYqoRQN/RSemgVKqg5TqAKkmfvHaCqtwB4vttDmNmYeVUOgbwFgPGqupwelZ8RaRmp+xHC3RUh4B4TwZOEYO8EcLOI3BJ5y+q+18dU6lTeUwkDTUVz+rox2QsIXWjWmXDj6sEs8WcOvWFf45umxIDQYONP6OIkBzclZDXCmLXPUFFKBnPVadTsD2AHVZ3HWE+3BOPo1X1lWhCRJar6c/LRO2icpTX69kZiD42+zxDJWgHXOCEy0GqUD30Afs0pU++mzDGD0SupPGVZeWVJLfKA5iHUsf4mY4RkwRm52yLkQrTiK1O2ywnxekh9qINA7POrEMbjHYXmUhikGLhlsGRNRBabrLHhJD5ZDCF/5FpVXYIwNeitaNTLD6B5Nu5weIxW1jcZIW/lLMpN3ZiM8pKI3KuqX6bFuA//v5+bNy06IJ+QcizC2J9nu5zR6z2jWDnFh7g1GuOsxqnq1rS05xKK3ocCPmbO5YRi7kaIG10tIk+RuGwaRD1tlJcrJyoijD/aLgXeFIT47yXmNSdY7lZOMMZ5zZUMReQZ7FmELL/hgAbNGr4dwEFonT4PQv/HA/i2g811VKlueMgvQp7BGBF5TFW/T146DKHsobfVZ/meNyBMWfkGgP4so9ohMOeo6uMItYWvQwhrFB29dKO/s1fKQkX0NwC/FpHzLSbZYlTfNIREQJueldU+0BCoeVRGXZWF3Ne1qnoDQunJjIy9svMZgzBGbX9Vvcqhak25D2Y8M5P5XlX9Ep/jOBpM453B0Kretd0zsu80+byAnr0OA1Ix/MpUVcsicjHjA2+iJzc3smIlEoo1KqsZeR82HpUVwR/+9yK9vicIm0xFcnkOqMQOU9WlCOU9e1B5bhO9by1CEP85/rwLwKUAbnHEZIxXzTkPs06Gex/XmFSYvgLA9SLyqMVuk6xIQrRbIGS0Vdx3JUHcFtNYA+BuFsgPF7H1E7k4wFn6hRRL2NZ8AoCfojE/0TyPWou9rGP9WaB1ZMfy/DOut+b6bp2SAd3mWaMloVRpPN6BUIi/pYNgWyk2Gwf4MYQ44W+S5pD60IOqWiP6G1infj9hy33R3BAhrVNSmlBOel8JIdZ4P5Gnn4rIAlXtRXpfWptZWqFh/gZEuQgJ9G8K4XkatsNJHysI9R5DYybpjHyziCJl+j9E5IUMp8fGJ5YAVETklxzZdhJCCHBPrBvqy5pVm3Y+PkRmZ1RFKMOcR0X66xb0X28hQ6RLZ1BvAWevw28lYygR+YOqXoYwMeI4WjWzsG6toz1YGcDuqvo3AKuTLL24KUIChJG06f387HyELLOpGZuzOUL8Y070XS+Q8FYSCp1HD+t2hFioDWQuOQJrGoScIRAKfF+Z3vmL0VxTanGAEi2tcxIyBRHBTzVC0MejdSMKi+8+AeDC4UAFnLHTT6jXhsUjx9p2AfASVT2XdGJzZ7Os2Z7o50heBbfnrSzu8RiZqUnrGL059rDg1ujb5NVTUAcz4uxzN9HDPAP5hsoXHBrxPQCrVPUihmj8DNBBejL+Ie+sEZHvqOqfCSseTlh1JvIPtU/rt2tG87UAfikid5CPe005uj1IKlMbSwW/Rxv78Cx5pevD6d0a1wI4l3Kn3GI9RjdvAPAdVV2WJidcvoTJxbKIPATg8zQqTkZILpzB85mY01tMU7Y1yuXnEMJrfwTwV3rfRa7Jmn+AzzquBQ/Ezz0U1KaQQxbY38dyfWLe0gCZarWInKmqZyP0tzwGjWSdqXwg35njWAA3iMiVrkTFJ8EICVhoSZnisK4bY/jgJTQ3UReETN1CBNskBf8nIczpW02oaCHh23sB3CUi90SMUiTN1KOC5iQl3/Qng3dJdHMREjckAbYwy/0uEbmR1n8l5eCq/N7phHAWITuT1wa230krtZD0HF2CApUe5oVodIRqddUIV0+kMfMgGqn4xQwvp4cCabD/6wgpqj40ml0keX6+WchS7sdIeae2jhdoENYyPEZDBhaikbyXJaBrTrEW+JkLaQwdjnzdxYzeKwiJOjeQfteZbeuM6gEzUCksF4rIV1T1BwBeRk/1APL1GL68F+ZlQpU8P0CkZi336XKEgePPmHIg4tTfgteFXul0GujzkN0K0e/7DSIyn/fqOu1S8fer6t8B/IOOTh35INetyYd9OZV2xWSdiCwA8N+q+i2EOPeRCBnOm/BcTJkU0Dyqzzf6r/Cs1vD1KEI2+QUicp+Ty8WI7+33xeTR2cieeWv8sSwDuWiFntac3Kq38EythHQNgGYvzE1ksFl+NbbYeyW91eOoUM077UFIQPguGhlzsTCYw03fmgpoCR92JwrdaQhFu9P43ZMpiC3RodcJtFIC9HY+QmD+fgBPWKq7i2v6w+2ol7BLFLLssikIpTMfSPCmqlzznXzPpSS2gfjebr9NudfbXFeZnxsWxWN1hJ0oazc0oN7BXtdHoqWYlTYNkzHSjfVZckilg8+JoyvNsw+dnvUQn7HohKNSmZWJ1OxG2HlrGvMT0Ogw1kfj5imEJMJ7aLwudc9Td6GUek56aGVUt+JHHa499F5bh5+tt/tsrkTF+LJGubAjZfhuVHJTKbd7nJG6kvD3AhpZDwG4j92xfGeketoZDaVCoQNZgE7PX1VFUpSGRrh2nYru4wA+hEZQvkxF9gVumB1Y3UGpRaf4PIEbvGZlNhPQ6Dw0QAb5NEJMsp+HJAmWwbkII5fuQyPreBCbd63UOs44jg5eaKFd5PbICy+LsXwHIdvRlw3UUg7QZ0znUT6+m8ywKANnjHTSlrDuzjpPDMPfS0damaI5ZiopcE7BGWQj4jWTdwpoLs1oB6qq5lEkHoJF9vzPpHvU2lHcaUYXmpujZ8GFSc0FBM2jy+D3Ku+anKxKu08WP9q+VYeLds24QusYf7wvTc/TCQydUK8q0Xlphvfmh2d4GVePwwEZ983qceyzjDt9Pv8s8dSgtJBC0/tKMfTDxfvJCWYVr2Js5FhCQUZ4r0Jo/P4ju6FTpHEfTHXeSo1wQl8EbVoSQJ+qPkQLp8fBm7HQ3gXAZFeX5TucNMVFcmTwZRGlNb23eYk9keCpOW/6QoSOSQahVZA98QHtCD40JwINS4G1I/Km2HZOL8cr+7yfyX2PLj9jjUZXLQFmgqu7NeNxJD23ekTr7ex/Pa8ySFGkee7lBdlQ6LDg+KfmYeI8RrAzdgvRWtpNRlHvEJAu8vCjDicvRutrkqc59qbg92EIisbTS2puTAr0au+rIKp6aOV5Ohk6aECkKF10Au1GPOBhc416Tdda7K+UkhafoISsiPl5eqdnI8T4+vnzYIT6qiWIBo4nEANSDsZvuv0+H2Eyy25IHhZeIdQwvfF1ovH3ubXktVBjJjKFOBshpX+/SPCYh1Mhvn8JgAcpnPv4nfWUA/T7pK6YusbMx2qKkhsJ763m75nnflZb2CEhYz1NjKjHyEEElRozVzCCafpRnaa2s5dZQtMZzLUECzzxHJIS81yzg3o0wlGyBF8OedN0z1bwa9QxyAt3baEgSgkKqtoOHfszGm767ZAe6i4BUpMUYHRm63h2aXvZzjM79KPajjxxz9BK6Q65VaWXQ14GUBbPRSiD3IIO0wBCQut1IrLMJUvlt1BUtUdVP62qz6tqTVXrqvqEqr6T7xnTDTiD99pBVX/Le1R13aufPz+rqhOy+vN2aolxLSU+9/v53ANck78G+PO7qjrNJs93uL9F2wOMXiN++R6pMQz4r3Amnk+M1nLuScG16exR1XL06iWvyMZEv1Ya1y35saHSMs+tnPIa7Os9KgEG920sfz9OVY9S1d1VdXtV3VlVd1TVPVX1eFXdV1WLbW2cs9Z+hJAGbv0nZwN4rarO6QYMRsvISkvuQXPbqRgeAkJt6VbOs+sG/DcYK6N3eDxCstV0rJvxaRDghQgdR16IvOTc9+U0mloEAXdVkI4yTLNySFA09hpHJvow64CbWlZuxNcUVf0PVT0ZIURSz/lM1kKzRjqtRK9+8koRCWGNDUnBUoG8VVU/j5AkmTczdsQMni7xqeWmCM+tkvRCA+IubAx8OlKIlaoejJBY9ShCH+vlCCHPBSJyF0KI8lAAM0rtPhhCPHOJqlqR96FUJi8BcJKIfC0p9tSZTpMBVX0EAT6ekEIodQAvArAdO3gUuneOWmZ24WsQkqG2R4C2fdmAEeFDAH7INVjGYe59pQKfg1Dn+zgVc6Xbw3K7XQO3sV4tYCHrubwdgH9HKNUAgO8PN5Q33IKJv05AKOZ/CqGB+hK0ji+WLNNWVV+EUIM5F6GudYDf8SCAO0TkYWeY6IZEe46fSgj5HwcBuFBEntyQjMxu7JUrbxlQ1U1UdR+E1qqzEUqO+hHqce/huT23kfHpsN6XkO+rEJJN5yM0sdgFnLetqtcDuBWhPOhNpQ5uUKWSuUdVv4owLHtXemyvU9XzACwYapq580TnIczeezWaaxVtkysILcl2Z9OJSrv3du/3ge4y67pegjD3b3feqxfNHXuK3NzvAriRDFltkxksAWMLhMk9lwG4wKxlZlY1JRv4BvmecZAQp3LK2loWLkGo76u5eIlmzFn1SWVN2XtZs1mdx7POulzf43WK+zOYCjnWJ1nP4SxvqyV8GMAqt1YrYBeE2sv7+ZlFcB1REmJOcXMC38tWkpI2Ir5a5/scOqFp+5D13qT3u7WNRSOJrpWR542LtyEU8G9KJWp7Yo0l5qnq+RRAzzmDdDxCOcViAE+5ZEdNoGO0ShqM9hctztw/t0926kkwjFvKh5hO88SX0+g7gWbsHLelrFkgIqtdsxiPiq0jE6JkMnDvj0KYxfxKhOqJfjQne/VRdl0E4GLL88jay9hYStn/IjIydpPK5/zz8Xk3J68+wS5OqfwVy5SUTntpMXck0KPQ8HyG338YQi3zPQg9GCaJyE2qegeAk0odaGyLFZZE5FJVnYLQ13d7hPZ+H0YYpO1LCiqdWAcMnC9AaE7w6gSiV8ccBwPYQUTuMs/YpkDkUKiFWChQke4P4CsICUc1NHfKsQbQywD8DMDZIrIiK/Mrz/YiSt6I47fuuW2YeFKzgVr0/hKTuqbTMLgewI85IKCQBqP7TDVaaYLktPGYgYoIiRJm+BS9UeCMlrKqWimROGKOu2NlpcybcrP7qFurz4D19XK9COVNb0bo+nOrWxvQSMJZoKrfRuj8cod93nUPapp64ga8A81lQZpCc7ZP3miKpw7FCTJpxkEB62bxDjY2T6CzzDKsOPlHVTclX78ToeD+PBq6K7ifcwDsjdB44TAAN7Fvdy9pbzMA/4PQUOFHqtrvZUNUQidufFEWjQ32tkaULBTVmftpSD5JKuZTTfkOdfsrjlaa+M3RpU/u8vwbh27EdR2qubOfRKNlFsLUl4fJwz7RKrH+2IenAIxR1RPJ8+MA/BMhefRhOgA9RBcPQmjUcTTCeL0LAfQlJCjZEIC4hEwzjJ2Sy5Ktxefi3uvL6UDZUEFoEvEaAD9R1Uvd99XdmsQZwuLGeXp69+uUyDBukqnkRZNdSx2PraLhMQ6hUdAtvG8vgGUdtV2ykgIK8t/zy79EhjoOoan0xWg01O4UqixQQd1BOGJmtCH+UA5EGB13txNMeb3iuB6qTkjk2wjNruPuPQYTrUaos/2SU6TdgrI08gC99VbMSNX2iTOmSAaccfJaeqZ9lkmZ4ZW0yghN3EuX5Vkmw3th0+Pe1++gqBpSsidTMknrCYZLkkAtqmrNt9BD6Pi1JUJ23s/chJumZ+M+PwHgCedtVyJFJml1vl7Zxjzgnzcpa9ueJ8oSFCcg/Pcgae9axJkyp3/4OnEaDscSGr4UwEe4L/H1S1XdmV7vQu7jWpdR+iqEDk2rE1AW8ypiQ7DV3qU2fM8yaqMM1qxQU80bWLFST7iHui5P8dSp+PM9TuaY11unobEvFZ3JFP+dBUNP4i5TpJcaYdw3Ioyae4SGzC9EZG3KWo5FaEIzl6jcWvf90kJWrOO02Kg3byi5fYhRmjKikkbrVqWq21JmXeT3ITLA1H0uTYYUE+R9PQEVEW+kqOokNPcU3gKhumQRgMu552sBjG1bmdoGO0xZAPyODPRlhH6530RoorAQnbfWUiq1AmMx59Lr9YrNW9hTuelXEJrrQY5kqEgp1AmD7A3gh4Raqlg3KG+zC89HKBXqa6V82vROEUE5dVWdwL1dISJP85CnM2bVQ+hmFYDnCQt5z2IGPYPNCVNMArA3ZxgWEbqULPIC3cHC0/h+60S1GqG93fIUeGsiY7/LADzLdc4gcy9Fo6Z4OoeqPwNgqapOQ6NlpXn+ywAsjpWdh/+YcTeVaxzr4KvlhGf8Z8fQw9qUaxoAMFdV93SW8XyE9mDmTc/iHixA6D/roa0ajZdpPAuDDa37yxKeRckJf4OfZnIdTwJYxn9PQaMXdj+fYQl/T1N2U7g+a+tW4xkv4f21S/S4N2ntIhF5grBtH9ZtqPCgE04lANNUdTbC8IkKv+MAVV3D9S4i9Fuj1zGd5/kon1sSPMYCvbbJ/PyqFGNrE+6p9ZId4Lk8gxw1oW6mqbXOs1rzpQCeo2EVG9DCfrZF0gz4/FPQaLe3kqGFZ6K48iS+dxPyS4HhK2u5WgfwQIKHFRtPPQznfB1hCMEpHC5QtK5mkddcYFjp7yKyLKYx7sNErmsiGvXWKwC8ICKrEvizTOdqLEI+ieWETHVe/hru5dJIn5RVdRu+ZwbPd5aq7sZzsMElS9Hc4a5OfpjE+/iWqMtEZHmMJtHY3g6NRkEl8vxEPuMYNPJ1aggjL58kqnWwql5LJ2/JUBMZ4Mo4pqjqf6rqSlVdoarnqOrMTjOxXBZXmf8+XFX7XFmKvWqM41b47++r6himuhe9t5ZUtxbda4aqfojrr/JVc+UvBnEvUdUf8z49Qy2ZcOt8EZ/xz+65S/z5MlV9WFW/zTKgf1PVq1T1Ge75clW9XlVPUdXpbhIOVPUk7s+zfJ41qrqYn12tql+g0vOw3iRVPUJVf6WqD6rqUlV9TlVv5vt3c2UQ9pkSn2ExM2B3UtWPq+qtqvq4qn6a75ugqseq6guq+hammX9GVW/kPVZzrX9hWvq4hDMrq+psfv73XOMyVV2lqk9xb45T1alufduo6k/5/ct4vi+o6tO830pC+/b9k1X1O6o6n1l9TVmWqjqW6fJfV9V/cu0rVHWBql7Atc2IvCw710/xniewBOxbqnonv2M5n+EPqvpy0lnRnafw/3ZR1S/zWR93vPcQ170vnyOm/61U9S5VvZAeeirS4Nb7c67rZPOq3Pf6kpkS72k0/V7S2/Pc7zXRfn+SM4Ghqpup6k94ljsafSWhLqr6PyzJe03C38qqum1EU0tV9TFVPZe0N1NVz+c69kzwhntYBvF10vyzpJX55IkjXemEv/cmqnqJqt7Ac30FZeHD3L+VqvoAv3cbwuBWlnIIP7eK7+vnPRfx54OkuWJSXaOjyzm85xJVfTv5p+hKYEr8WXTnZ+V/5UhmFngu7+JzPUHeeVJV/6qq7+b9JJJlm6vqr0mLEym/zuIzLOdrvqp+gzxUYuImSNt/IQ+spsxfRnm1VFXvIN8YzdlzzKH8/hs/u4R8cYmqvpNn40u3iuTPC1X1MsqrY1T1YtLKJap6sqq+jp89XFX35hoPVNXXqupcVf2Iqu7eMcyb4DKvBPBzWqtfI859O/9vacSsmqOYW6NYxyMAfgXglChGGHcCOpLW25lojHMrODzd4lMSQbZzENr/nUTLy8esqu7fywD8EsAnuc6R6ojTQ2t3KwBfRBii+1eEDNMaLf8jAPyAHvX3Adh4ttsQRmVNAfA5hBF05/PMegHcgkbDfYuPvRMhg/kZvvdhWpkvZuzsKJcs5dvKFd1+/gDAXozVXMZEMqDR/KDEtX6MXtq1jMWNQyh3OoRw1zcB/K+zXJVeydcRBiDfD+DPtBiFGXfHAPgD1/prVV3Bs/sDLeWDSCvnk05tj590iRvqPJKaoxeLA57A/dyMoY1zuadbM8b/v3zuj7PhiReANn7qJQA+T+v3YoQM28n0BF/B/f4kgHOcRV1EGEDxO1rhf0cYe/c8Pb9XAng/Qpb7B3n+PnbYjuFnDLiQ372vqv4ejeEFTb2vE2KRt5KOppO/7uS6zeq/jmiHeUhlnkOhhZwooDE8w/azRmXwYgBfRcg4vonJgUt4TocTdfol6czzr8Ul64z7fo9e/18ZzloKYAeEOazHAPgqZ8H2odG0pcDn6iFsehx56FzS32Zc378zvvxG0pzSG/8B6ed43vtshGbqRXpyFXeWaeGz6ZS/CwD8WUTWuBBHEmTdFD930HmdSWOfRJg+czv3ZAk9xlcxFPZSopLz3HeWueaJ9OL+m8/3F4SBFtO5xx8inX4YwJ3OUz+b7z0BoWLkEsbbJ/P+9ztvHczX+Q756Sb+/jzl0MvJi0fwPksspOBi3GMBvIt88wjlwv08t7fw+S+nTB1HGboN5c9DfO8QA3sNq6rkrPnX05JaoqpvpDVVSCuGb8NLPZgWTZ9rGOGvGl/zVPWtzsIsOQumx1t2qrqpqn6Rlkhf9H3m8Q7wexeo6qm09LqWRp/TM30NvYkBeiJH0OKbwPVMVNW96AX2MfEArii7hxbgGlX9DZ+7V1XH0xL0hfdvp4fzJ1qlE/mecfRYj6V1fTW9o4J5I6p6GD3T5ap6naq+mp+ZwO8W/jyOa1lCC3c/vmc83z+RFuEiWre78XPFyOt5N98/hZ8fy9/3ojewUFUP4n3LpIUp9IiW0sIdx+cb61EGfu+ZtG4PcrRYpsf4oKrerapHu7WP4/dsoapn0KL+Di1gcdb3J0hTi1T1PFXdkvcbx++aRO9+Mc97H2dNF3l+3+L/T+Y9x3PfJhIRqKrqbz0P8fet2/BM7TP787xX0sPYN/LIzCstObSqxH0dw89XiOjMID2Oi7zYOfSAHze6SssHUNVvcm+OdXxuHunNpL93cy/Gu58zSTdLSXtLVHV3hzQUVPXFRBrm0RuZyrXa2Wymqr+jjPsgP2u0PZ10v4xreB+fdxzvP5bIwHfpeZ7J/Sm4vdqUZ3MXPaBefm6c219JQdhKpOl+er89Hcgj81Inqer/0VP+Av89iesZx+Y0n+Aefpt7a2e5JeXMAM/z40SSbB/G8zlPJ12cHSGdY3mf07mP7+W6jMe9lz2O+7VSVT/INdrne7muj/DMv0P43551NvlvQFXv4XNO4cvOpUdVX6KqF/H1XfLCuUQfeh18PmRl4N3tIhfxEgrcZ1le4gV728qUP6ep6n85CLaeovwqhCN+oKp7JXzfDHau+BkF7lIH49acoq45BXsnhfv4brucOZXpq1X1PgqQ9zqmKjmiElX9AJ/nW4QmCsZQqrod9+YsB615iK5AJXSDqt7P9/e4e3iGP5VQyunubHuoTJ8mM78+icj4PlOmz5qySxDgk8msq9lkYKIzrAr8+6SI/mytvYSQaqr6JnffApnv49ynYxOgxEILZSqEgJZQcCV2EaJyuICGyaEmdPnzI6Srmwn3xYqjyHX+kp9/j3sGe013tDMI1fHf+6jqTTREJrs9k3ZgXvfMPVQyf3Uhg9tV9Yeq+jZV3Soh9FNw69uDPPUjB48W3Sg2E2xndahMixSg3yDtfSjmVXeu06loVlFQ7+oUYllVv8SzPdUZYEUHlRYpRK+nobO929sZFLRrqQjmpOzp3jTGnnKGlu3DFMKcd6rqHk7BZSpSR7P/QZ559xCUaUFV30xePttBpB4iHkue/AWN1hOikMqvuQ9nM68gab0HE4q/lzBrITKYv2KGUZxI5Pj8eNLCN1V1VuTc2X5twXU+q6q7uvtvRqWoDAFNiNZn6xhPA2FLfmZrQtnjbS3dLFL2ENwAIb2T6f7+TFUPY5ZUoU2YyddnLSFsfBPhDk1Jligw2eYkAGdT8P2QjPw3JimdzuzEbQl/1iLIp+agpJ8RXr4cwNquWSHt7+84Qi1XojGgveD2VLjvzxD2mOrqpXzCQjwdw5px1BF6He+NMA/yYXa6qYpIna8+1qGdRwjvRUxOMMjP9vAaAPeISNUJokICvPQXJq2oCS7C8SURWc7nsfpYn1UHQqormRBX48vW2k86WQVgSyqxegIMNVju0gJt8LS1G2HWK7gHyu/wrxLC8OOf8z6voECpOVgSAG4UkUeZdFFyMdmiiKwhdNZD6M/2rIIwInGxn0vKZx9wYZG7SDMz0Vwa1HZYh997C8MLrwfwG67jDYRNL6dyfguAMS4pJy7h8WsopMC3nfIHmIT4KIBrmfxlhkeJe1wk3PpjJtAM8gdpZltCwQ8B+Ak7BFUdfVX48yHCv3MBHMz9j8uNzgXwdGTw2rk/R/h9IiFTX5JhyZP1KNnS86+0CAmB8HOnVRR1wqNFAOeJyBLug/FXTUTWishKnn8FoYSwGIX/1pJWljtFWXKhtvmk02nMlPVlYXAhtybej0rjjuPfzxGRZxwv2Fkps8+/yVDFUdx3u3oJCf9NRFbRkTE+FP57rYgs5GuRiCwQkSdZGVDyDD20dL+Gsqu53ysicithkLcA+ARLJa4YAkQqCPU9n2Dsy9oXFqN4kh3mBArhXV2GZm9cfoDm+k5rzFBAGDJ+JkKHlKdcFun6mH+pLvvxCa6v4nB/e/4nGYOaQCXkyyYkIUYSj3OazvjB1qr6n1E8rOCYpETin0wBdJf721ju3TJ3vzj+ZWu5362v5ic18P+Wu+dJmvQyXVUPYSxrApoHFG/LtVh8doCf1yjGBzd1qKWgAbAzmfIWZqJqVDIDZ+DczPXvAWA8W03CCcxH+O+qq10FMxOFhlGfY36LVdo+7UEhNttlgCrXd4gzwlLrNttAh6oi8hiAx1T1Zt5zS8aOXsQY9L7MQP0xM0k9zSnWbcOJSFD6c5GkuGDCNCOjp1mMSV7KjHO4fId4fOMzXN8O0d+2QaME799c+YrPgLX62H2oCLfzpRV87wvM+FXXdKXq6LqPcWhxGa5WflJzRjISeCPrHC0LvEDeLME1ssnKVYkahxSZx9AL4OXMePV1zBYbL5PHZtCwmMm4v827rrCyQ70ciPj7adLuZMcD8Z5rSra1kB8FwImq+lI0Tz3zToTNw92Ta14RydWH3b3rbt81iiUPrskyuhGPYBuqQk1I2y+IyH2qegaDv/uq6koRuWWIafr/oEI9jQKz4oR9KdpAe/BxCcF3iYi4jEZP4PMZ9L7Wp8BvAC3RqmwPNjjKyHX/AC3BVtarJhClMdAE7sUWJPB4H32jjKSJ9Pa+PjRqwtISSex9lQxBb7VlhchyrqnqEUzy2ILMsNadZZGCtej2Ke6c0ikNTuB6lgPoT+hg5JluBfdqHJoHyZsBszaJj/iFqqoDaC7Psv3vVdWPMhmmj0p9wJ3VOCYneW9P2zAakLIu61rzPK35u0iLF9ET+ySAUwE8JiI/iu6VRHeFhL8bwjHYBCPFEPMCs0gDou72Ik5mlOj9S7Bu6ZsZY+OZpDY2RWZUeJ53O8XtBe0aT8N+MpQzJAYQzTLOcz5JMsgpqAqTBS0R62dubm/LOm437mwc96LIJKRZUcKPNxprTPqcn4CCWalWfIbqkhGtAU7ZPUs81i5uvKARP9aIqC13si+JZm6mERP/rR/AGn/vhO5h9azzGFa40jHLUhH5raoeiFBLNYsZXWh3tJQRs4j8jg/9HwgNGwz+qkeepiRYv76TiBFakV7dVbRsL6LLX8ooql+fl7YwOJAhfAopzKROGd9EWDu2DOM62GXct6R7ShsKqp2/q6puD+BT9Ap+hJAxvByNzjNFCpO9EM1QbPPeScp9BWltIoCxqroq5Wws69gg6YGE++Z59rjbTA9Ct5qPI3Sz+hMNwNVujVMJyR6ALvQ2jdtIuixIpfX+KIBHGUP6LkIt6e/43In77UY7FiLEpOhQlSTDp4xG7Z+H+5bx5zQAPQmt+6wJhvHBjAQFYTW9jyNkhE6Nwj+x16SEcq3uGQmecCu61u6JXKmp6kLSw8EMdz3GPa1n1MPH6x0gL61gKOZer/QjurQ9WUQeRILM0Bb0ndYpTFvwiRmsvQgZwE9znVWsWwNtxvsyR5fxWXYiEzDsytQp1CKJ7RZVnQxgbFYf1gzrabDVHiHj36vqMoSU5lcx9omEzYk3P47b3k+Y8moAF4jIc67GdUNrDK9d+GwNzW3VFKGR+YCqPkWrWkTkipxn46dN+E5SebtPaQc09Upaot8XkdNS1jUl8taSvNN6tBet9k4JW61hbO2PIrKSNF53Xo9Z7IfSQ7wDwMqoa452AL9a+OIECv6PisiDCc8+GaF8o9AtPk7gw8GZnxYHQ4jpL6Simsy4NyJoMG69KBFEOZZowz3eO3WIxGaEmCtoLo1bRvh2fwCbsHl9McHTKzJEtKWLydn1GGOu0wDcz5hgHh7oiRAUzalMWioYt1d5oNoC47G/APAFOhuf53ASS2bMmittHbn6VfVJGmOLROSqNvbBP79myOJOQg1Jnu+dpPX5InJTG9+FFH3R0VpHZEoChUeVh7lSRJ5pxyuNHrjuiKxHRC5DGI12BkKd4hNodE4ppLwG+L5bEer3voDQJeQnAJ53gqHm1j/Sl7SwYiVD2Gd5PxUK4yoD83WXYAIqipsAnEwkoYn4oszqbaJsQXEwaz2HcsrDZE2esWMC63CyxJg4KmvpQajTHGNCziUZVdGY/tMb7UU9ZV8Lrj3cAwjx0sMRWliWXaKDukSguQiJa6sBXCkiS50BW+/QK7c41RQq9GVm0PjsWXrseyI5UQ+t9t6fN7/3IFXd2+1TzUZ3RclPO1PRLULo7OSVXT9prz+iPYv7r0SIIW+CUC9oiWWD7+N3HU6FuTpSXv0IuRRbAThWVSdEyXPWbm4KQr3hZDT3aC0TIr2S+/cpy+50e2HvLTCbcw4/p5GManW2cVjEK8MBnlsZobWfevqKkIJYzhbZxejXRC0+AOA9qrqFSyDS+MXcg6PZZci++2Lu6Xs5HDtRETE7fJbrEx4/e9Z4uyRP1/PdgBmnPsHLxUtrAP5IvvpAtM5CdHZbsEymF8mx/GJS2HKD8UyjxVWH+Pmm2KHbsKdF5DQmPRxPj2U7NNpymRCq0c1/kIR2pRsXJW7KwfqEdH0GHyJhsY6QT0h6SYKZxBHmI4Q+t+d4OyusXoFGDPRMQqffU9VPImQ2rqZFW2a3pLdTGH2VnnwRyUkmSdagb7ZRRHK7uNgQGIyH83vmkdEP4aSixXxfD+vIDkAYsTU2YuQire5HSRuHA/g7oVqLq69hq8WC976cUi0hFKtvi9CIQFT1KoTM4Rph2K0AvAchMedMNAraNcUrL0QoiGYYVUbDhwJ4mapeSY/OWrHNQchUfzHhPmDdpt55LXDLLv00gDmqehoNrpVcR4VnPxEh+eSjVAJXsl+1eWx9hE73ArCDqj7O755Ag8Bi5/+gIj4JwPXsy73SxdT2R8gmnsz/jxGWsxCaIXyM5/hHB8v3IiTVHEM5sQSNvACjjQr385U0hJ5R1Yv5HSZzrKnI0QgZoL93Wbq1BORLWijTmkNNyty3hTQGD1bVh/hey0hf6mByTQiBmHf6MYSs5a8B2FlVz3LhAIsVj6GX/noaGKcjNEjpR2g4cjZC45PTVPVr5LN+yoKx9OA/SXn6GzRixZojnBHvQRI9PsRn3oeIxFq2OS1ZqJChufMAvAPAC6r6CyIUa0kbY6gPTkaImZ6LRlKWyaJqFA7DBqtMhxlGNkW4WER+6KhqPELgvMhY4BIRWe2FtrOmdD15oDFSUEyAYWOvL8vSlQQFYES6CqEx/0cRpqVcQgG1DUL6+5W0sq9kPO6LCF2n/o6QYLCGBsrLELoMXYzQi3cxmhtOZ8WNBI2SnnoSQmKhgQjyKjhBBYSylPMAnIjQ7enPZPQJCIkjryGDz3YK2/rtWkr+9RQiffz3dkQszmO83N/fK76qiFyrql9GiNueDuAGIh19hChfTqjzPABfcz1PNcFIgIvzxOdZdX+3nyupNA5HmGq0J2FkG0f4ep7TZVRemoJY1NPCB9EorwGEDk+nIpT6zOezLqSSsYzul1OpfhmAZe1bduZSehCnIDRdv4LGy9YIDdhv4vvvBfBZPtcveN8HuA/bISQyXkAP9Cg0knZ8p6bPIXSV+hxCqcy1VNgzETKct+B3z+aarYtSnTD87ar6GYRSii9wP29hPG4s9/TFVEqXpvCf5Iz3VaOwgPHtdVTWHyBNr0RIBLoOYdZxn0fPnJHpR1PeT6PkS9yHo0knd1AW9JD396O3fg2RupVoTHD5Hu/zbj73VQg5EjUajC+nQr2Pe7MmMpjjISHx85fQnAQa0+M1DL+dyPVeg5AZP470aPz5OZ7jyQidla5HI5t8e/LKGBp0kqDkfYJWgQmA9f+vlKnzWmsO5jKh3k9LrOCstmLkFdQ3oIHZ1YjIKmguYYkFYj0SevG4rsH0bj73SnpJmyCMeDqc9zGvyoT7aoT2aXeRYF+L0BKsxj19kFbveXxvbGHWkpjIZSrWHRQPJI++ksgTU3oO9iwrKOgeoQf4QzJTBWFE2KcRsiyP4P9LpLzn8z1fo4AfQ4PrdDQ3lq8lKKACn+PPFCJvR2gL92o02r7dRIPld0jOorQ9qrfwEktOOPqY9N08k0/x+W26xXIKxHO4nr15nxJCKZUpnmpknKShCHVCbN9X1b9QqB2H0G5yjBNMz1HQ/5DPXkXz+LIXEBJ6xlPgHcXvv4znC2f0/p7v/yBCtvIJ/PvjNJy+T4Ow6JS1N3pu5JmexHV+huvoo+f7ESrp76GRfDioAMhPt/NM38bXvzvBvxAh2/97IjKf9FhNMGbrGZ5OzZ2tuuewGOlF3N/P06hVKodbHNRZS0G2fHz6UdLHUdz3gxDa/9m1nIrndzR2qmhOzHwWoWriWsqCd6KR4byCnt6pPPMBJ7d8nWw99qSd3EosBXJ/f5o8KkRb3kHD6Fc0MgxBWgngfTTS3sFnHe/WeRVp8zpn7NSd3I0zvtuGef8fi4XA/wtFpDQAAAAASUVORK5CYII=" alt="Approach International Student Center">
+    <div>
+      <div class="kicker">Current Issues BP/AAP, Fall 2026, Week 3</div>
+      <h1>Rhetoric &amp; Fallacies: the ads you can’t see</h1>
+      <div class="sub">Advertising and consumer culture in the age of AI. Two 100-minute lessons with a 30-minute break.</div>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="idrow">
+    <label>Name <input type="text" id="sname" autocomplete="name"></label>
+    <label>Date <input type="date" id="sdate"></label>
+    <span class="mode">Joining:
+      <label><input type="radio" name="joinmode" value="room"> in the room</label>
+      <label><input type="radio" name="joinmode" value="online"> online</label>
+    </span>
+  </div>
+</div>
+
+<div class="bar">
+  <div class="wrap">
+    <nav aria-label="Sections">
+      <a href="#overview">Overview</a>
+      <a href="#l1">Lesson 1</a>
+      <a href="#brk">Break</a>
+      <a href="#l2">Lesson 2</a>
+      <a href="#write">Writing</a>
+    </nav>
+    <span class="sp"></span>
+    <span class="saved" id="saved" aria-live="polite"></span>
+    <div class="timer" id="timer" role="timer" aria-label="Activity timer">
+      <span class="clock" id="clock">00:00</span>
+      <button type="button" id="tStart" aria-label="Start or pause timer">▶</button>
+      <button type="button" data-add="60" aria-label="Add one minute">+1</button>
+      <button type="button" id="tReset" aria-label="Reset timer">↺</button>
+    </div>
+    <button class="btn solid" type="button" id="printBtn">Print / Save as PDF</button>
+    <button class="btn ghost" type="button" id="clearBtn">Clear answers</button>
+  </div>
+</div>
+
+<main class="wrap">
+
+<section id="overview">
+  <div class="intro">
+    <div class="panel">
+      <h2>This week you will</h2>
+      <ul class="goals">
+        <li>Identify rhetorical appeals (ethos, pathos, logos) in an opinion piece and explain their effect on the reader.</li>
+        <li>Recognize and name logical fallacies, especially <b>straw man</b>, <b>slippery slope</b> and <b>ad hominem</b>, and explain why they weaken an argument.</li>
+        <li>Evaluate the persuasive strategies of writers, brands and experts quoted in the news.</li>
+        <li>Argue a position in a mock regulator hearing and write a short persuasive letter without using fallacies yourself.</li>
+      </ul>
+      <p class="note" style="margin:10px 0 0">Recycled from Weeks 1–2: framing verbs (<i>emphasize, downplay, frame as</i>), stance, and reporting verbs (<i>claim, contend, insist</i>).</p>
+    </div>
+    <div class="panel">
+      <h2>Sources</h2>
+      <div class="src">
+        <div class="s"><b>Lesson 1 (opinion piece)</b>
+          <a href="https://www.google.com/search?q=site%3Atheconversation.com+%22Online+ads+are+becoming+harder+to+spot%22" target="_blank" rel="noopener">“Online ads are becoming harder to spot—but we’re not powerless to stop it”</a><br>
+          <small>Daniel Angus, Lauren Hayden &amp; Nicholas Carah, <i>The Conversation</i>, 2026</small></div>
+        <div class="s"><b>Lesson 2 (news investigation)</b>
+          <a href="https://www.google.com/search?q=site%3Atheguardian.com+%22Brands+using+AI-generated+influencers%22" target="_blank" rel="noopener">“Brands using AI-generated influencers to promote products on social media”</a><br>
+          <small>Sarah Marsh, <i>The Guardian</i>, 21 June 2026</small></div>
+      </div>
+      <p class="note" style="margin:10px 0 0">The readings below are classroom adaptations for B2–B2+. Short phrases in quotation marks come from the original articles. Full articles are posted on Approach’s Community.</p>
+    </div>
+  </div>
+
+  <div class="map" aria-label="Session map">
+    <div class="blk"><span class="lbl">Lesson 1 (100 min): The ads you can’t see</span>
+      <div class="segs"><a class="seg-e" href="#l1e" style="flex:12">Engage<small>12 min</small></a><a class="seg-s" href="#l1s" style="flex:50">Study<small>50 min</small></a><a class="seg-a" href="#l1a" style="flex:38">Activate<small>38 min</small></a></div></div>
+    <div class="blk"><span class="lbl">Break</span><div class="segs"><a class="seg-b" href="#brk" style="flex:1">Break<small>30 min</small></a></div></div>
+    <div class="blk"><span class="lbl">Lesson 2 (100 min): Fake fans, real sales</span>
+      <div class="segs"><a class="seg-e" href="#l2e" style="flex:10">Engage<small>10 min</small></a><a class="seg-s" href="#l2s" style="flex:45">Study<small>45 min</small></a><a class="seg-a" href="#l2a" style="flex:45">Activate<small>45 min</small></a></div></div>
+  </div>
+</section>
+
+<!-- =========================== LESSON 1 =========================== -->
+<section class="lesson" id="l1">
+  <div class="lesson-h"><h2>Lesson 1: The ads you can’t see</h2><span class="topic">Topic 1: AI advertising and the disappearing “sponsored” label</span></div>
+
+  <div class="stagehead e" id="l1e"><span class="pill">Engage</span><span class="rule"></span><span class="mins">12 min</span></div>
+
+  <div class="act e">
+    <div class="act-h"><h3>A. Ad or not? Scroll the feed</h3><button class="tchip" type="button" data-min="8">8 min</button></div>
+    <p class="task">These six posts are invented, but each one is based on a real advertising format. Decide alone: is it an <b>ad</b>, <b>not an ad</b>, or <b>can’t tell</b>? Then compare with a partner and reveal the commentary.</p>
+    <p class="hy">Everyone votes on their own worksheet first. In-room pairs compare face to face; online students compare in pairs in breakout rooms or by private chat. The teacher collects a quick show of hands / chat count for post 6.</p>
+    <div class="feed" id="feed">
+      <article class="post"><div class="who"><span class="av" style="background:#b05a7a">MJ</span><div><div class="nm">mia.jogs</div><div class="meta">2.1M followers</div></div></div>
+        <div class="body">Morning routine 🌅 these trainers changed my 10k time honestly. Code MIA15 for 15% off!!</div><div class="tiny">ad</div>
+        <div class="vote"><label><input type="radio" name="feed1" value="ad"><span>Ad</span></label><label><input type="radio" name="feed1" value="not"><span>Not</span></label><label><input type="radio" name="feed1" value="cant"><span>Can’t tell</span></label></div>
+        <div class="take"><b>Ad.</b> A discount code means a commercial deal. Notice how small the label is, and how the post copies the style of a personal update.</div></article>
+      <article class="post"><div class="who"><span class="av" style="background:#4a7a5a">TK</span><div><div class="nm">Tom K (your cousin)</div><div class="meta">Friend</div></div></div>
+        <div class="body">Best ramen in town, no question 🍜 @NoodleBar</div><div class="tiny">&nbsp;</div>
+        <div class="vote"><label><input type="radio" name="feed2" value="ad"><span>Ad</span></label><label><input type="radio" name="feed2" value="not"><span>Not</span></label><label><input type="radio" name="feed2" value="cant"><span>Can’t tell</span></label></div>
+        <div class="take"><b>Probably not, but…</b> This is “organic” content. Yet the restaurant might reward customers for tags. You cannot see the deal, if there is one.</div></article>
+      <article class="post"><div class="who"><span class="av" style="background:var(--navy)">AI</span><div><div class="nm">Your AI assistant</div><div class="meta">Chat</div></div></div>
+        <div class="body">Sorry you’re stressed 😟 Want to unwind tonight? <u>CellarBox</u> has 20% off a 6-bottle case near you, just for today.</div><div class="tiny">&nbsp;</div>
+        <div class="vote"><label><input type="radio" name="feed3" value="ad"><span>Ad</span></label><label><input type="radio" name="feed3" value="not"><span>Not</span></label><label><input type="radio" name="feed3" value="cant"><span>Can’t tell</span></label></div>
+        <div class="take"><b>Can’t tell, and that is the problem.</b> This is the exact scenario the Lesson 1 authors warn about: a personalized offer with no label, which nobody else sees.</div></article>
+      <article class="post"><div class="who"><span class="av" style="background:#d4651f">FZ</span><div><div class="nm">Fizzo Drinks</div><div class="meta">Brand account</div></div></div>
+        <div class="body">me pretending to study during exam week 📚😴 [popular meme template]</div><div class="tiny">&nbsp;</div>
+        <div class="vote"><label><input type="radio" name="feed4" value="ad"><span>Ad</span></label><label><input type="radio" name="feed4" value="not"><span>Not</span></label><label><input type="radio" name="feed4" value="cant"><span>Can’t tell</span></label></div>
+        <div class="take"><b>Ad (brand content).</b> No product is shown, but a company posts memes to build brand image. It is persuasion that does not look like persuasion.</div></article>
+      <article class="post"><div class="who"><span class="av" style="background:#8a6bb0">GL</span><div><div class="nm">GlowLab Skincare</div><div class="meta">Reposted a customer</div></div></div>
+        <div class="body">“I’ve tried everything for my skin… this is the first one that worked 😭” (video of a young woman by a pool)</div><div class="tiny">&nbsp;</div>
+        <div class="vote"><label><input type="radio" name="feed5" value="ad"><span>Ad</span></label><label><input type="radio" name="feed5" value="not"><span>Not</span></label><label><input type="radio" name="feed5" value="cant"><span>Can’t tell</span></label></div>
+        <div class="take"><b>Ad, and possibly not a real customer.</b> Brands pay for “user-generated content”. In Lesson 2 you will read that some of these “customers” are generated by AI.</div></article>
+      <article class="post"><div class="who"><span class="av" style="background:#555f70">S</span><div><div class="nm">Search results</div><div class="meta">“best headphones under $100”</div></div></div>
+        <div class="body">AI overview: “The top choice for most people is the SoundNest Lite, praised for comfort and battery life…”</div><div class="tiny">&nbsp;</div>
+        <div class="vote"><label><input type="radio" name="feed6" value="ad"><span>Ad</span></label><label><input type="radio" name="feed6" value="not"><span>Not</span></label><label><input type="radio" name="feed6" value="cant"><span>Can’t tell</span></label></div>
+        <div class="take"><b>Can’t tell.</b> AI-personalized results may or may not be influenced by advertisers, and disclosure is limited. Would you trust it more or less if you knew?</div></article>
+    </div>
+    <div class="chkrow"><button class="btn gold" type="button" data-revealfeed>Reveal commentary</button><span class="score" id="feedscore"></span></div>
+    <label class="q" for="feedq">Which post was hardest to judge? What was missing that would have helped you decide?</label>
+    <textarea id="feedq"></textarea>
+  </div>
+
+  <div class="act e">
+    <div class="act-h"><h3>B. Read the headline, predict the argument</h3><button class="tchip" type="button" data-min="4">4 min</button></div>
+    <p class="task" style="font-size:17px;font-family:var(--head);color:var(--navy);font-weight:700">“Online ads are becoming harder to spot—but we’re not powerless to stop it”</p>
+    <div class="cols">
+      <div><label class="q">Is this a news report or an opinion piece? What tells you?</label><textarea id="pred1"></textarea></div>
+      <div><label class="q">Who is “we”? What solution do you expect the writers to propose?</label><textarea id="pred2"></textarea></div>
+    </div>
+  </div>
+
+  <div class="stagehead" id="l1s"><span class="pill">Study</span><span class="rule"></span><span class="mins">50 min</span></div>
+
+  <div class="act s" data-ex="v1">
+    <div class="act-h"><h3>C. Key vocabulary: the language of hidden ads</h3><button class="tchip" type="button" data-min="10">10 min</button></div>
+    <p class="task">Match each word to its meaning. These words come back in the reading, the hearing and your letter, so make them yours.</p>
+    <div class="tablewrap"><table class="grid">
+      <thead><tr><th style="width:24%">Word</th><th style="width:40%">In context</th><th>Meaning</th></tr></thead>
+      <tbody>
+      <tr class="item"><td><b>erosion</b> (n.)</td><td>the steady <i>erosion</i> of clear boundaries</td><td><select data-ans="a" aria-label="erosion meaning"></select><div class="fb">Erosion = gradual weakening, like water slowly wearing away rock.</div></td></tr>
+      <tr class="item"><td><b>mimic</b> (v.)</td><td>ads engineered to <i>mimic</i> organic content</td><td><select data-ans="b" aria-label="mimic meaning"></select><div class="fb">Mimic = copy the look or behaviour of something else.</div></td></tr>
+      <tr class="item"><td><b>organic content</b></td><td>ads that look like <i>organic content</i></td><td><select data-ans="c" aria-label="organic content meaning"></select><div class="fb">On social media, “organic” = not paid for.</div></td></tr>
+      <tr class="item"><td><b>disclosure</b> (n.)</td><td>limited forms of <i>disclosure</i></td><td><select data-ans="d" aria-label="disclosure meaning"></select><div class="fb">Disclosure = making information known (verb: disclose).</div></td></tr>
+      <tr class="item"><td><b>opaque</b> (adj.)</td><td><i>opaque</i> advertising systems</td><td><select data-ans="e" aria-label="opaque meaning"></select><div class="fb">Opaque is the opposite of transparent.</div></td></tr>
+      <tr class="item"><td><b>audit</b> (v./n.)</td><td>a blurred system is harder to <i>audit</i></td><td><select data-ans="f" aria-label="audit meaning"></select><div class="fb">To audit = to check officially and carefully against rules.</div></td></tr>
+      <tr class="item"><td><b>scrutiny</b> (n.)</td><td>ad archives for public-interest <i>scrutiny</i></td><td><select data-ans="g" aria-label="scrutiny meaning"></select><div class="fb">Scrutiny = close examination; things “come under scrutiny”.</div></td></tr>
+      <tr class="item"><td><b>comply with</b> (v.)</td><td>almost impossible to make sure they <i>comply with</i> regulations</td><td><select data-ans="h" aria-label="comply with meaning"></select><div class="fb">Comply with = obey. Noun: compliance.</div></td></tr>
+      </tbody></table></div>
+    <div class="chkrow"><button class="btn solid" type="button" data-check="v1">Check</button><span class="score"></span></div>
+  </div>
+
+  <div class="act s" data-ex="tf1">
+    <div class="act-h"><h3>D. Read: “The ads you can’t see”</h3><button class="tchip" type="button" data-min="18">18 min</button></div>
+    <p class="task">Read the adaptation (about 7 minutes). While you read, underline any sentence that tries to make you <i>feel</i> something, and circle any sentence that gives <i>evidence</i>. Then answer True / False / Not Given.</p>
+    <div class="readgrid">
+      <div class="reading">
+        <h4>The ads you can’t see</h4>
+        <div class="by">Adapted from Angus, Hayden &amp; Carah, <i>The Conversation</i> (2026). Opinion / analysis.</div>
+        <p><span class="pn">¶1</span>Online advertising is about to change dramatically. At its Google Marketing Live event, Google presented expanded artificial intelligence (AI) systems for digital ads. Soon, ads could appear inside your conversation with an AI chatbot, or you could be offered a discount that only you see, chosen by AI from your browsing behaviour, how likely you are to buy, and what is available nearby. Companies will also be able to use AI tools to produce ads from start to finish.</p>
+        <p><span class="pn">¶2</span>Google is not alone. Meta is expanding tools that automatically generate and personalize ad images, video backgrounds, captions and targeting across Facebook and Instagram. TikTok’s owner, ByteDance, offers a suite called Symphony that can turn a simple text prompt or product link into promotional videos, scripts, AI avatars and dubbed voiceovers that look like creators’ content.</p>
+        <p><span class="pn">¶3</span>At the same time, ads are becoming harder to recognize. Instagram and Facebook recently replaced their familiar “sponsored” labels with smaller “ad” markers. This “may look like a minor interface tweak,” the authors write, but it signals something larger: “the steady <span class="kw">erosion</span> of clear boundaries” between advertising, entertainment, recommendation and ordinary social life.</p>
+        <p><span class="pn">¶4</span>Platforms have engineered ads to <span class="kw">mimic</span> <span class="kw">organic content</span>: think of influencer partnerships, AI-personalized search results, or brands posting memes. Rather than interrupting what you watch, ads are designed to “dissolve into the flow itself.” When a company buys ad space, the platform labels it automatically, but for partnerships and personalized results <span class="kw">disclosure</span> is limited. And, the authors point out, “the less an ad feels like an ad, the more effective it often becomes.”</p>
+        <p><span class="pn">¶5</span>The authors are researchers with the Australian Ad Observatory and the Australian Internet Observatory. They have studied political advertising, “astroturfing” (fake grassroots campaigns), the marketing of alcohol and unhealthy food, and misleading “green” claims. Their work depends on simple signals: what counts as an ad, who paid for it, where it appeared and why it was shown to particular people. “But those signals are weakening.”</p>
+        <p><span class="pn">¶6</span>AI makes this worse. If each person receives a private stream of product suggestions and discounts, regulators and researchers cannot <span class="kw">audit</span> them. Such ads could also be biased or harmful: “you might be telling an AI assistant that you’re stressed, and suddenly be offered a discount on a case of wine.” For regulated products such as alcohol and gambling, ads that appear one moment and vanish the next are almost impossible to check, so no one can be sure they <span class="kw">comply with</span> the rules.</p>
+        <p><span class="pn">¶7</span>The authors see an opportunity in Australia’s emerging “digital duty of care” framework. <span class="kw">Opaque</span> ad systems, they argue, shape politics, health, money decisions and public trust. They propose minimum rules: clear ad labels that both people and machines can read; public ad archives, including AI variations, open to public-interest <span class="kw">scrutiny</span>; accurate information about targeting; and clear identification of AI-generated or AI-mediated ads.</p>
+        <p><span class="pn">¶8</span>“This is not about banning advertising,” they stress, nor about returning to “some imagined ‘clean’ internet.” Advertising has always adapted to new media. But there is “a fundamental difference between visible persuasion and persuasion that disappears into the infrastructure.”</p>
+      </div>
+      <div class="side panel">
+        <h2 style="font-size:16px">True, False or Not Given?</h2>
+        <div class="item"><label>1. Google announced its new AI ad systems at a marketing event.</label><select data-ans="T" aria-label="Statement 1"><option value="">–</option><option>T</option><option>F</option><option>NG</option></select><div class="fb">True (¶1).</div></div>
+        <div class="item"><label>2. TikTok’s Symphony can only edit videos that a company already made.</label><select data-ans="F" aria-label="Statement 2"><option value="">–</option><option>T</option><option>F</option><option>NG</option></select><div class="fb">False: it creates content from a text prompt or product link (¶2).</div></div>
+        <div class="item"><label>3. All paid partnerships are clearly labelled as ads.</label><select data-ans="F" aria-label="Statement 3"><option value="">–</option><option>T</option><option>F</option><option>NG</option></select><div class="fb">False: disclosure for partnerships is “limited” (¶4).</div></div>
+        <div class="item"><label>4. The authors have studied how alcohol is marketed.</label><select data-ans="T" aria-label="Statement 4"><option value="">–</option><option>T</option><option>F</option><option>NG</option></select><div class="fb">True (¶5).</div></div>
+        <div class="item"><label>5. Australia’s digital duty of care law has already come into force.</label><select data-ans="NG" aria-label="Statement 5"><option value="">–</option><option>T</option><option>F</option><option>NG</option></select><div class="fb">Not Given: it is called “emerging”; we are not told whether it is in force.</div></div>
+        <div class="item"><label>6. The authors want to ban AI-generated advertising.</label><select data-ans="F" aria-label="Statement 6"><option value="">–</option><option>T</option><option>F</option><option>NG</option></select><div class="fb">False: they want labels and transparency, not a ban (¶7–8).</div></div>
+        <div class="chkrow"><button class="btn solid" type="button" data-check="tf1">Check</button><span class="score"></span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="act s" data-ex="xr">
+    <div class="act-h"><h3>E. Rhetoric X-ray: how do the authors persuade?</h3><button class="tchip" type="button" data-min="14">14 min</button></div>
+    <div class="toolkit">
+      <div class="tk"><b>Ethos</b>Builds trust in the speaker: expertise, experience, fairness.</div>
+      <div class="tk"><b>Pathos</b>Moves emotions: fear, hope, sympathy, outrage. Often a vivid example.</div>
+      <div class="tk"><b>Logos</b>Uses facts, examples, cause and effect, logical steps.</div>
+      <div class="tk"><b>Anticipation</b>Answers an objection before the reader can make it.</div>
+    </div>
+    <p class="task">Which strategy does each excerpt mainly use? Some could fit two categories; choose the <i>main</i> one, then check and read the explanation. Discuss items 3 and 6 with a partner: is the evidence strong enough?</p>
+    <p class="hy">Pairs: in-room students sit together; online students are paired in breakout rooms. Mixed pairs (one in-room laptop + one online) also work well.</p>
+    <div class="xr">
+      <div class="item"><blockquote>“researchers like us, working through projects such as the Australian Ad Observatory…” <small>¶5</small></blockquote>
+        <div class="opts" data-ans="ethos"><label><input type="radio" name="xr1" value="ethos">Ethos</label><label><input type="radio" name="xr1" value="pathos">Pathos</label><label><input type="radio" name="xr1" value="logos">Logos</label><label><input type="radio" name="xr1" value="anti">Anticipation</label></div>
+        <div class="fb">Ethos: the authors present themselves as experienced experts, so we trust their judgment.</div></div>
+      <div class="item"><blockquote>“you might be telling an AI assistant that you’re stressed, and suddenly be offered a discount on a case of wine” <small>¶6</small></blockquote>
+        <div class="opts" data-ans="pathos"><label><input type="radio" name="xr2" value="ethos">Ethos</label><label><input type="radio" name="xr2" value="pathos">Pathos</label><label><input type="radio" name="xr2" value="logos">Logos</label><label><input type="radio" name="xr2" value="anti">Anticipation</label></div>
+        <div class="fb">Pathos: a vivid, personal hypothetical (“you”) that makes the reader feel vulnerable. Note: it is a possibility, not reported evidence.</div></div>
+      <div class="item"><blockquote>Instagram and Facebook replaced “sponsored” labels with smaller “ad” markers. <small>¶3</small></blockquote>
+        <div class="opts" data-ans="logos"><label><input type="radio" name="xr3" value="ethos">Ethos</label><label><input type="radio" name="xr3" value="pathos">Pathos</label><label><input type="radio" name="xr3" value="logos">Logos</label><label><input type="radio" name="xr3" value="anti">Anticipation</label></div>
+        <div class="fb">Logos: a concrete, checkable fact. Critical question: is one label change enough to prove a “steady erosion”? The authors admit it “may look like a minor interface tweak”.</div></div>
+      <div class="item"><blockquote>“the less an ad feels like an ad, the more effective it often becomes” <small>¶4</small></blockquote>
+        <div class="opts" data-ans="logos"><label><input type="radio" name="xr4" value="ethos">Ethos</label><label><input type="radio" name="xr4" value="pathos">Pathos</label><label><input type="radio" name="xr4" value="logos">Logos</label><label><input type="radio" name="xr4" value="anti">Anticipation</label></div>
+        <div class="fb">Logos: a cause-and-effect claim. It sounds logical, but no study is cited in this article. “Often” is a hedge.</div></div>
+      <div class="item"><blockquote>“This is not about banning advertising. Nor is it about returning to some imagined ‘clean’ internet.” <small>¶8</small></blockquote>
+        <div class="opts" data-ans="anti"><label><input type="radio" name="xr5" value="ethos">Ethos</label><label><input type="radio" name="xr5" value="pathos">Pathos</label><label><input type="radio" name="xr5" value="logos">Logos</label><label><input type="radio" name="xr5" value="anti">Anticipation</label></div>
+        <div class="fb">Anticipation: the authors block a <b>straw man</b> version of their argument (“they want to ban ads!”) before critics can use it. It also builds ethos, because they sound reasonable.</div></div>
+      <div class="item"><blockquote>Without clear signals, “we lose one of the few remaining ways to understand who is shaping the information environments we increasingly depend on every day.” <small>conclusion</small></blockquote>
+        <div class="opts" data-ans="pathos"><label><input type="radio" name="xr6" value="ethos">Ethos</label><label><input type="radio" name="xr6" value="pathos">Pathos</label><label><input type="radio" name="xr6" value="logos">Logos</label><label><input type="radio" name="xr6" value="anti">Anticipation</label></div>
+        <div class="fb">Pathos (fear of loss, urgency): “few remaining ways”, “every day”. Is this a fair warning or a mild <b>slippery slope</b>? Discuss.</div></div>
+    </div>
+    <div class="chkrow"><button class="btn solid" type="button" data-check="xr">Check</button><span class="score"></span></div>
+    <label class="q" for="xrq">Overall, which appeal do the authors rely on most? Does the balance make the piece more or less convincing for you?</label>
+    <textarea id="xrq"></textarea>
+  </div>
+
+  <div class="act s">
+    <div class="act-h"><h3>F. Map the argument</h3><button class="tchip" type="button" data-min="8">8 min</button></div>
+    <p class="task">Complete the skeleton of the authors’ argument in your own words (no copying). Use one framing verb from Week 1 somewhere, e.g. <i>The authors frame AI ads as…</i></p>
+    <div class="amap">
+      <div class="node claim"><b>Main claim</b><textarea id="am1"></textarea></div>
+      <div class="node"><b>Reason 1</b><textarea id="am2"></textarea></div>
+      <div class="node"><b>Reason 2</b><textarea id="am3"></textarea></div>
+      <div class="node"><b>Strongest evidence</b><textarea id="am4"></textarea></div>
+      <div class="node"><b>Concession / what they are not saying</b><textarea id="am5"></textarea></div>
+      <div class="node"><b>Proposed solution</b><textarea id="am6"></textarea></div>
+      <div class="node"><b>Weakest point (your view)</b><textarea id="am7"></textarea></div>
+    </div>
+  </div>
+
+  <div class="stagehead a" id="l1a"><span class="pill">Activate</span><span class="rule"></span><span class="mins">38 min</span></div>
+
+  <div class="act a">
+    <div class="act-h"><h3>G. The regulator’s desk: which rules first?</h3><button class="tchip" type="button" data-min="18">18 min</button></div>
+    <p class="task">You are advisers to a national regulator with budget for only <b>three</b> new rules this year. Four come from the article; two are extra options. In groups of 3–4, put the rules in order (top 3 will be adopted). Consider <b>impact</b> on consumers and <b>feasibility</b> (can it actually be enforced?).</p>
+    <p class="hy">Groups of 3–4 with at least one online student in each group where possible. The group shares one worksheet screen (in-room laptop on the call, or an online student shares their screen). Every member re-creates the final order on their own worksheet.</p>
+    <div class="cols">
+      <div>
+        <ul class="rank" id="rank1">
+          <li data-id="r1"><span>Consistent, clear ad labels that both people and machines can read, on every format.</span><button type="button" data-up aria-label="Move up">↑</button><button type="button" data-down aria-label="Move down">↓</button></li>
+          <li data-id="r2"><span>Public ad archives, including every AI-generated variation, open to researchers.</span><button type="button" data-up aria-label="Move up">↑</button><button type="button" data-down aria-label="Move down">↓</button></li>
+          <li data-id="r3"><span>Accurate information about targeting: why <i>you</i> were shown this ad.</span><button type="button" data-up aria-label="Move up">↑</button><button type="button" data-down aria-label="Move down">↓</button></li>
+          <li data-id="r4"><span>Clear identification of AI-generated or AI-mediated ads, including how AI was used.</span><button type="button" data-up aria-label="Move up">↑</button><button type="button" data-down aria-label="Move down">↓</button></li>
+          <li data-id="r5"><span>(Extra) No personalized AI ads for alcohol or gambling at all.</span><button type="button" data-up aria-label="Move up">↑</button><button type="button" data-down aria-label="Move down">↓</button></li>
+          <li data-id="r6"><span>(Extra) An “off switch” so users can refuse personalized prices and discounts.</span><button type="button" data-up aria-label="Move up">↑</button><button type="button" data-down aria-label="Move down">↓</button></li>
+        </ul>
+      </div>
+      <div>
+        <label class="q" for="rk1">Why is your #1 rule the most important? (logos: give a reason and a consequence)</label><textarea id="rk1"></textarea>
+        <label class="q" for="rk2">Which rule did you reject that someone in your group defended? Summarize their argument fairly.</label><textarea id="rk2"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="act a">
+    <div class="act-h"><h3>H. Pushback round: platform vs. researchers</h3><button class="tchip" type="button" data-min="15">15 min</button></div>
+    <p class="task">Now a tech platform pushes back against your #1 rule. Each group splits into two sides. Side A (the platform) writes two objections; Side B (the researchers) answers each one. <b>Rule:</b> every speaker must use one named appeal (ethos, pathos or logos), and listeners call out which one it was.</p>
+    <p class="hy">Side A and Side B can be split by location (online vs. in-room) to make turn-taking easy: the teacher alternates between the call and the room. Online listeners type the appeal they heard in the chat (“E”, “P” or “L”).</p>
+    <div class="cols">
+      <div><label class="q" for="pb1">Side A: platform objections</label><textarea id="pb1" placeholder="e.g. Labels on every AI variation would be impossible because…"></textarea></div>
+      <div><label class="q" for="pb2">Side B: researchers’ responses</label><textarea id="pb2" placeholder="e.g. Granted, … However, …"></textarea></div>
+    </div>
+  </div>
+
+  <div class="act a">
+    <div class="act-h"><h3>I. Exit ticket</h3><button class="tchip" type="button" data-min="5">5 min</button></div>
+    <label class="q" for="exit1">Complete: “The most persuasive moment in the article was ___ because it appealed to ___. However, ___.”</label>
+    <textarea id="exit1"></textarea>
+  </div>
+</section>
+
+<!-- =========================== BREAK =========================== -->
+<section class="break" id="brk">
+  <h2>Break: 30 min</h2>
+  <p>Optional, and only if you want to: next time you scroll, notice one post where you are not sure whether it is an ad. You do not need to share anything personal after the break.</p>
+  <button class="btn" type="button" data-min="30">Start 30-min timer</button>
+</section>
+
+<!-- =========================== LESSON 2 =========================== -->
+<section class="lesson l2" id="l2">
+  <div class="lesson-h"><h2>Lesson 2: Fake fans, real sales</h2><span class="topic">Topic 2: AI-generated influencers and the honesty of advertising</span></div>
+
+  <div class="stagehead e" id="l2e"><span class="pill">Engage</span><span class="rule"></span><span class="mins">10 min</span></div>
+
+  <div class="act e">
+    <div class="act-h"><h3>J. The crying bride</h3><button class="tchip" type="button" data-min="10">10 min</button></div>
+    <div class="scene">
+      <div class="phone" aria-label="Description of an Instagram video">
+        <div class="screen">
+          <div class="cap">A bride in her wedding dress, tears in her eyes, speaking to camera: <i>“Everyone expected a no-phone wedding, so I gave them cameras instead.”</i></div>
+          <div class="cap"><span class="handle">Caption:</span> “The app I used is called @oncefilmapp.”</div>
+          <div class="lab">Description of a real Instagram video (reported by The Guardian, June 2026)</div>
+        </div>
+      </div>
+      <div>
+        <p class="task" style="margin-top:0">Several Instagram videos promoting <b>Once</b>, a disposable-camera-style photo app, show this bride. Rate your first reaction, then discuss.</p>
+        <div class="scale" role="group" aria-label="How much do you trust this recommendation?">
+          <span style="font-weight:600;margin-right:4px">How much do you trust it?</span>
+          <label><input type="radio" name="trust" value="1"> 1 not at all</label><label><input type="radio" name="trust" value="2"> 2</label><label><input type="radio" name="trust" value="3"> 3</label><label><input type="radio" name="trust" value="4"> 4</label><label><input type="radio" name="trust" value="5"> 5 completely</label>
+        </div>
+        <label class="q" for="bride1">Which appeal is the video using, and why is it effective? (Lesson 1 terms)</label><textarea id="bride1"></textarea>
+        <label class="q" for="bride2">Prediction: two deepfake-detection companies analysed the video. What do you think they found?</label><textarea id="bride2"></textarea>
+        <div class="chkrow"><button class="btn gold" type="button" data-reveal="brideR">Reveal what they found</button></div>
+        <div class="reveal fb" id="brideR" style="display:none">Reality Defenders and Get Real Labs concluded the brand had <b>likely used AI-generated influencers</b>: the “bride” was probably not a real person. Once did not respond to the Guardian’s request for comment. Does this change your rating? Why does it feel different from an obvious ad?</div>
+        <p class="hy">In-room students answer aloud; online students unmute or type in the chat. The teacher reads two chat answers aloud so both groups hear each other.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="stagehead" id="l2s"><span class="pill">Study</span><span class="rule"></span><span class="mins">45 min</span></div>
+
+  <div class="act s">
+    <div class="act-h"><h3>K. Fallacy toolkit</h3><button class="tchip" type="button" data-min="6">6 min</button></div>
+    <p class="task">A <b>fallacy</b> is a flaw in reasoning that makes an argument look stronger than it is. The first three are this week’s core terms. Read the cards and add one example of your own for a core term.</p>
+    <div class="fcards">
+      <div class="fc"><h4>Straw man<span class="core">core</span></h4>Distorts an opponent’s view into a weaker, extreme version, then attacks that.<br><span class="sig">Signal:</span> “So you’re saying we should…”<br><span class="ex">“Researchers want to ban all online ads.”</span></div>
+      <div class="fc"><h4>Slippery slope<span class="core">core</span></h4>Claims one small step will lead to an extreme result, without showing each step.<br><span class="sig">Signal:</span> “If we allow X, soon…”<br><span class="ex">“Label AI ads today, and tomorrow the government controls every post.”</span></div>
+      <div class="fc"><h4>Ad hominem<span class="core">core</span></h4>Attacks the person instead of their argument.<br><span class="sig">Signal:</span> “Of course <i>they</i> would say that…”<br><span class="ex">“She only criticizes AI because she’s an old-fashioned journalist.”</span></div>
+      <div class="fc"><h4>Bandwagon</h4>Something must be right because many people do or believe it.<br><span class="sig">Signal:</span> “Everyone is already…”<br><span class="ex">“Millions of brands use AI models, so it’s fine.”</span></div>
+      <div class="fc"><h4>False dilemma</h4>Presents only two options when more exist.<br><span class="sig">Signal:</span> “Either… or…”<br><span class="ex">“Either we ban AI ads or we accept total deception.”</span></div>
+      <div class="fc"><h4>Hasty generalization</h4>Draws a big conclusion from too little evidence.<br><span class="sig">Signal:</span> “I saw one…, so all…”<br><span class="ex">“That AI ad looked fake, so AI ads are easy to spot.”</span></div>
+    </div>
+    <label class="q" for="fown">My own example (straw man, slippery slope or ad hominem) about advertising:</label>
+    <input type="text" id="fown">
+  </div>
+
+  <div class="act s" data-ex="fd">
+    <div class="act-h"><h3>L. Fallacy detective: the comment section</h3><button class="tchip" type="button" data-min="10">10 min</button></div>
+    <p class="task">These comments (invented) appeared under a news post about AI influencers. Name the fallacy in each one. Then choose one comment and rewrite it as a <i>fair</i> argument below.</p>
+    <div class="thread">
+      <div class="cmt item"><span class="av" style="background:#b05a7a">RK</span><div class="bub"><b>rk_dev</b>If we let one brand use a fake influencer, soon there will be no real humans online at all, and nobody will ever trust anything again.</div><select data-ans="slope" aria-label="Comment 1 fallacy"></select><div class="fb">Slippery slope: one step → total collapse of trust, with no evidence for the steps in between.</div></div>
+      <div class="cmt item"><span class="av" style="background:#4a7a5a">JP</span><div class="bub"><b>jpeters</b>Of course Which? wants labels. They’re a bunch of out-of-touch campaigners who don’t understand modern marketing.</div><select data-ans="adhom" aria-label="Comment 2 fallacy"></select><div class="fb">Ad hominem: attacks the group, not its evidence (e.g. the 70% finding).</div></div>
+      <div class="cmt item"><span class="av" style="background:#d4651f">LM</span><div class="bub"><b>lena.m</b>So the researchers want to go back to the internet of 1998 with no ads at all? Ridiculous.</div><select data-ans="straw" aria-label="Comment 3 fallacy"></select><div class="fb">Straw man: the Lesson 1 authors said explicitly that they do not want to ban advertising.</div></div>
+      <div class="cmt item"><span class="av" style="background:#8a6bb0">DS</span><div class="bub"><b>dsilva</b>Half the big brands already use AI content. If everyone does it, it can’t be that wrong.</div><select data-ans="band" aria-label="Comment 4 fallacy"></select><div class="fb">Bandwagon: popularity does not make something ethical (and the “half” figure is an estimate).</div></div>
+      <div class="cmt item"><span class="av" style="background:#555f70">AO</span><div class="bub"><b>ao_writes</b>Either brands label every single pixel touched by AI, or we accept that nothing online is real anymore.</div><select data-ans="dilemma" aria-label="Comment 5 fallacy"></select><div class="fb">False dilemma: there are many middle options, e.g. labelling only AI-generated people.</div></div>
+      <div class="cmt item"><span class="av" style="background:#2b6f9e">TN</span><div class="bub"><b>tnguyen</b>I saw an AI model with six fingers last week, so these fakes are obviously always easy to spot.</div><select data-ans="hasty" aria-label="Comment 6 fallacy"></select><div class="fb">Hasty generalization: one obvious example; Which? found 70% of people could not identify all the fakes.</div></div>
+      <div class="cmt item"><span class="av" style="background:#9e6b2b">BW</span><div class="bub"><b>bwells</b>The artist only refused the AI video because he’s scared AI will take his job.</div><select data-ans="adhom" aria-label="Comment 7 fallacy"></select><div class="fb">Ad hominem (attacking motive): it ignores his actual reason, honesty towards customers.</div></div>
+      <div class="cmt item"><span class="av" style="background:#6b2b9e">CF</span><div class="bub"><b>cfox</b>People who complain about AI ads basically think shoppers are too stupid to make their own decisions.</div><select data-ans="straw" aria-label="Comment 8 fallacy"></select><div class="fb">Straw man: critics argue shoppers lack <i>information</i>, not intelligence.</div></div>
+    </div>
+    <div class="chkrow"><button class="btn solid" type="button" data-check="fd">Check</button><span class="score"></span></div>
+    <label class="q" for="fair1">Rewrite one comment as a fair argument (keep the opinion, remove the fallacy):</label>
+    <textarea id="fair1"></textarea>
+  </div>
+
+  <div class="act s" data-ex="v2">
+    <div class="act-h"><h3>M. Read: “Fake fans, real sales”</h3><button class="tchip" type="button" data-min="17">17 min</button></div>
+    <p class="task">Read the adaptation of a <b>news investigation</b>. Unlike Lesson 1, the journalist mostly reports what <i>other people</i> say. Then complete the vocabulary and the “who says what” grid.</p>
+    <div class="readgrid stack">
+      <div class="reading">
+        <h4>Fake fans, real sales</h4>
+        <div class="by">Adapted from Sarah Marsh, <i>The Guardian</i>, 21 June 2026. News investigation.</div>
+        <p><span class="pn">¶1</span>A Guardian investigation found that some brands are quietly deploying AI-generated “influencers” on social media. The content purports to show genuine customers enjoying products, but gives no obvious sign that the people are not real. Some creators who make this content are asked to sign non-disclosure agreements (NDAs), so they cannot talk about their work.</p>
+        <p><span class="pn">¶2</span>No specific UK rule requires brands to say when ad content was created with AI. In the EU, rules under the Artificial Intelligence Act, applying from August 2026, require AI-generated or manipulated content, such as deepfake images, audio and video, to be clearly labelled. These rules do not apply in the UK.</p>
+        <p><span class="pn">¶3</span>Examples include the “crying bride” videos for the Once app: two deepfake-detection firms concluded the brand had likely used AI influencers, and Once did not respond to a request for comment. A video for <b>Maket</b>, an AI home-design app, shows a woman who appears to be AI-generated. Maket said AI influencers were “not a core part” of its strategy, just an experiment to test marketing ideas on a small scale. <b>Ashle</b>, a Dubai-based fashion brand, posted a photo of a model who appears to have an extra finger. After the Guardian contacted it, Ashle deleted photos. It said its clothes are real and handmade, that some early images used AI, and that the photos were removed because those designs were no longer sold, “not because they were AI-generated.”</p>
+        <p><span class="pn">¶4</span>The consumer group <b>Which?</b> said customers should be clearly told when promotional content features AI-generated people. Lisa Barber of Which? said its research found that 70% of people could not correctly identify all the real and fake videos they were shown. The <b>Advertising Standards Authority (ASA)</b> said nothing in its rules prohibits undisclosed AI content; the question it would ask is whether the ad itself is misleading.</p>
+        <p><span class="pn">¶5</span><b>Clarissa Mansbridge</b>, a former celebrity manager who now creates AI influencers for brands, estimated that “about 40% to 60%” of some big brands’ content is made with AI, but said many creators are under NDA. “I call it plausible deniability,” she said. Brands want high-end images without paying $20,000–$70,000 for a photoshoot, she explained, and “human influencers killed the market for themselves.” In her view, the authenticity of user-generated content “was always about resonance, not [about] who made it,” and AI is simply “a smarter, more scalable way to get there.”</p>
+        <p><span class="pn">¶6</span>Not everyone agrees. Leeds artist <b>Zac Rossiter</b> was offered a free AI-generated “unboxing” video of his prints by a marketing agency. He refused: “I would never work with an agency that used fake AI unboxing videos over actual, real people.”</p>
+      </div>
+      <div class="side panel">
+        <h2 style="font-size:16px">Vocabulary in context</h2>
+        <p class="note" style="margin:2px 0 6px">Type the right form of a word from the bank.</p>
+        <div class="tracker" aria-label="Word bank"><span class="chip">purport</span><span class="chip">deploy</span><span class="chip">deepfake</span><span class="chip">authenticity</span><span class="chip">resonate</span><span class="chip">plausible deniability</span><span class="chip">misleading</span><span class="chip">prohibit</span><span class="chip">scalable</span></div>
+        <div class="vgrid"><div class="item">1. The clip <input type="text" data-ans="purports" style="width:120px" aria-label="Gap 1"> to show a real customer.<div class="fb">purports (to): claims to be or show, often falsely.</div></div>
+        <div class="item">2. Brands now <input type="text" data-ans="deploy" style="width:120px" aria-label="Gap 2"> AI tools to make dozens of ad versions in an afternoon.<div class="fb">deploy: put into use.</div></div>
+        <div class="item">3. A <input type="text" data-ans="deepfake" style="width:120px" aria-label="Gap 3"> makes it look as if someone said something they never said.<div class="fb">deepfake: realistic fake video or audio.</div></div>
+        <div class="item">4. Unboxing videos are trusted for their apparent <input type="text" data-ans="authenticity" style="width:120px" aria-label="Gap 4">.<div class="fb">authenticity: the quality of being real or genuine.</div></div>
+        <div class="item">5. An ad that <input type="text" data-ans="resonates" style="width:120px" aria-label="Gap 5"> with viewers feels personally meaningful.<div class="fb">resonates (with): connects emotionally.</div></div>
+        <div class="item">6. NDAs give brands <input type="text" data-ans="plausible deniability" style="width:150px" aria-label="Gap 6">: they can always deny using AI.<div class="fb">plausible deniability: the ability to deny something believably.</div></div>
+        <div class="item">7. The ASA acts only if an ad is <input type="text" data-ans="misleading" style="width:120px" aria-label="Gap 7">.<div class="fb">misleading: gives a false impression.</div></div>
+        <div class="item">8. UK rules do not <input type="text" data-ans="prohibit" style="width:120px" aria-label="Gap 8"> undisclosed AI content.<div class="fb">prohibit: officially forbid.</div></div>
+        <div class="item">9. AI content is <input type="text" data-ans="scalable" style="width:120px" aria-label="Gap 9">: ten videos or ten thousand at similar cost.<div class="fb">scalable: can grow easily without growing costs.</div></div>
+        </div><div class="chkrow"><button class="btn solid" type="button" data-check="v2">Check</button><span class="score"></span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="act s" data-ex="who">
+    <div class="act-h"><h3>N. Who says what? Stance map</h3><span class="note">part of M</span></div>
+    <p class="task">Match each voice to its position, then choose the reporting verb you think fits best. Your verb shows <i>your</i> judgment (Week 2): <i>insists</i> is stronger than <i>says</i>; <i>claims</i> suggests doubt.</p>
+    <p class="hy">Work in trios: one in-room student, one online student and one of either if possible. Divide the seven voices, then share answers aloud in 2 minutes.</p>
+    <div class="tablewrap"><table class="grid">
+      <thead><tr><th style="width:20%">Voice</th><th style="width:38%">Position</th><th style="width:18%">Reporting verb</th><th>Key point in your own words</th></tr></thead>
+      <tbody>
+      <tr class="item"><td><b>Which?</b> (consumer group)</td><td><select data-ans="A" class="pos"></select><div class="fb">A: Which? calls for clear labelling.</div></td><td><select class="rv"></select></td><td><input type="text" aria-label="Which? key point"></td></tr>
+      <tr class="item"><td><b>ASA</b> (UK regulator)</td><td><select data-ans="B" class="pos"></select><div class="fb">B: the test is “is it misleading?”, not “is it AI?”.</div></td><td><select class="rv"></select></td><td><input type="text" aria-label="ASA key point"></td></tr>
+      <tr class="item"><td><b>Maket</b> (design app)</td><td><select data-ans="C" class="pos"></select><div class="fb">C: “not a core part… rather an experiment”. A downplaying frame (Week 1).</div></td><td><select class="rv"></select></td><td><input type="text" aria-label="Maket key point"></td></tr>
+      <tr class="item"><td><b>Ashle</b> (fashion brand)</td><td><select data-ans="D" class="pos"></select><div class="fb">D: an alternative explanation that we cannot verify.</div></td><td><select class="rv"></select></td><td><input type="text" aria-label="Ashle key point"></td></tr>
+      <tr class="item"><td><b>Clarissa Mansbridge</b> (AI creator)</td><td><select data-ans="E" class="pos"></select><div class="fb">E: she defends AI content on cost and “resonance”. Note her commercial interest.</div></td><td><select class="rv"></select></td><td><input type="text" aria-label="Mansbridge key point"></td></tr>
+      <tr class="item"><td><b>Zac Rossiter</b> (artist)</td><td><select data-ans="F" class="pos"></select><div class="fb">F: he rejects fake testimonials on principle.</div></td><td><select class="rv"></select></td><td><input type="text" aria-label="Rossiter key point"></td></tr>
+      <tr class="item"><td><b>EU AI Act</b></td><td><select data-ans="G" class="pos"></select><div class="fb">G: labels for AI-generated or manipulated content, but not in the UK.</div></td><td><select class="rv"></select></td><td><input type="text" aria-label="EU AI Act key point"></td></tr>
+      </tbody></table></div>
+    <div class="chkrow"><button class="btn solid" type="button" data-check="who">Check positions</button><span class="score"></span></div>
+  </div>
+
+  <div class="act s" data-ex="ev">
+    <div class="act-h"><h3>O. Weigh the persuasion</h3><button class="tchip" type="button" data-min="12">12 min</button></div>
+    <p class="task">Quoted speakers persuade too. For each statement, name the weakness, rate its strength (1 = weak, 4 = strong), and say what evidence would make it stronger.</p>
+    <div class="item"><blockquote style="margin:0;font-style:italic">“I’m going to say about 40% to 60% of the content out there from some of the big brands is actually being made through AI.” <small style="font-style:normal;color:var(--muted)">Mansbridge</small></blockquote>
+      <div class="cols" style="margin-top:6px"><div><select data-ans="stat" class="evs" aria-label="Weakness 1"></select> <span class="opts" style="display:inline-flex">Strength: <label><input type="radio" name="ev1" value="1">1</label><label><input type="radio" name="ev1" value="2">2</label><label><input type="radio" name="ev1" value="3">3</label><label><input type="radio" name="ev1" value="4">4</label></span></div><input type="text" placeholder="Evidence needed…" aria-label="Evidence needed 1"></div>
+      <div class="fb">Vague, unsourced statistic: a 20-point range, “I’m going to say”, and no way to check (NDAs). A big number can also create a bandwagon effect that makes AI content seem normal.</div></div>
+    <div class="item"><blockquote style="margin:0;font-style:italic">“Unfortunately, human influencers killed the market for themselves.” <small style="font-style:normal;color:var(--muted)">Mansbridge</small></blockquote>
+      <div class="cols" style="margin-top:6px"><div><select data-ans="gen" class="evs" aria-label="Weakness 2"></select> <span class="opts" style="display:inline-flex">Strength: <label><input type="radio" name="ev2" value="1">1</label><label><input type="radio" name="ev2" value="2">2</label><label><input type="radio" name="ev2" value="3">3</label><label><input type="radio" name="ev2" value="4">4</label></span></div><input type="text" placeholder="Evidence needed…" aria-label="Evidence needed 2"></div>
+      <div class="fb">Sweeping generalization: all human influencers are blamed as one group, which also shifts responsibility away from brands.</div></div>
+    <div class="item"><blockquote style="margin:0;font-style:italic">“The authenticity of UGC was always about resonance, not [about] who made it.” <small style="font-style:normal;color:var(--muted)">Mansbridge</small></blockquote>
+      <div class="cols" style="margin-top:6px"><div><select data-ans="redef" class="evs" aria-label="Weakness 3"></select> <span class="opts" style="display:inline-flex">Strength: <label><input type="radio" name="ev3" value="1">1</label><label><input type="radio" name="ev3" value="2">2</label><label><input type="radio" name="ev3" value="3">3</label><label><input type="radio" name="ev3" value="4">4</label></span></div><input type="text" placeholder="Evidence needed…" aria-label="Evidence needed 3"></div>
+      <div class="fb">Redefining a key word: “authenticity” normally means <i>real</i>; she redefines it as <i>emotionally effective</i>, so a fake can count as “authentic”.</div></div>
+    <div class="item"><blockquote style="margin:0;font-style:italic">The images were removed “because those particular designs are no longer part of the collection, not because they were AI-generated.” <small style="font-style:normal;color:var(--muted)">Ashle</small></blockquote>
+      <div class="cols" style="margin-top:6px"><div><select data-ans="alt" class="evs" aria-label="Weakness 4"></select> <span class="opts" style="display:inline-flex">Strength: <label><input type="radio" name="ev4" value="1">1</label><label><input type="radio" name="ev4" value="2">2</label><label><input type="radio" name="ev4" value="3">3</label><label><input type="radio" name="ev4" value="4">4</label></span></div><input type="text" placeholder="Evidence needed…" aria-label="Evidence needed 4"></div>
+      <div class="fb">Alternative explanation: possible, but the timing (deleted after the Guardian asked) makes readers doubt it. Note the journalist simply reports it and lets readers judge.</div></div>
+    <div class="chkrow"><button class="btn solid" type="button" data-check="ev">Check</button><span class="score"></span></div>
+  </div>
+
+  <div class="stagehead a" id="l2a"><span class="pill">Activate</span><span class="rule"></span><span class="mins">45 min</span></div>
+
+  <div class="act a">
+    <div class="act-h"><h3>P. Advertising hearing: Shoppers’ Voice v. Keepsake</h3><button class="tchip" type="button" data-min="25">25 min</button></div>
+    <p class="task"><b>The case (invented, based on the Guardian’s examples):</b> <i>Keepsake</i>, a wedding photo app, posted a video of a tearful bride praising the app. The bride was AI-generated; nothing said so. The consumer group <i>Shoppers’ Voice</i> has complained to the regulator. The panel must decide: <b>was the ad misleading?</b></p>
+    <p class="task"><b>The twist:</b> each team secretly hides <b>one fallacy</b> in its opening statement. Opponents and the panel try to catch it. A correct catch earns a point; a false accusation loses one.</p>
+    <p class="hy">The panel works best as online students (they see and hear everyone on the call). To raise a flag: in the room, hold up a paper with the fallacy name; online, type “FLAG: straw man” in the chat. Every team must have at least one online member who speaks.</p>
+    <div class="tabs" role="tablist" aria-label="Role cards">
+      <button role="tab" aria-selected="true" data-tab="t1">Shoppers’ Voice</button>
+      <button role="tab" aria-selected="false" data-tab="t2">Keepsake (brand)</button>
+      <button role="tab" aria-selected="false" data-tab="t3">AI studio</button>
+      <button role="tab" aria-selected="false" data-tab="t4">Panel</button>
+      <button role="tab" aria-selected="false" data-tab="t5">Procedure</button>
+    </div>
+    <div class="tabpanel on" id="t1" role="tabpanel"><b>Shoppers’ Voice (complainants).</b> Argue that viewers believed this was a real bride’s honest experience. Useful support: Which? found 70% of people could not identify all real and fake videos; the EU now requires labels for deepfakes. Anticipate: “the app features are real, so where is the harm?”</div>
+    <div class="tabpanel" id="t2" role="tabpanel"><b>Keepsake (brand).</b> Argue that every app feature shown is accurate, so no consumer was misled about the <i>product</i>. Point out that UK rules do not require AI labels. You may concede the bride was a “creative concept”. Prepare for: “Would customers feel deceived if they knew?”</div>
+    <div class="tabpanel" id="t3" role="tabpanel"><b>AI studio (made the video).</b> Argue that human UGC was always scripted and paid for anyway, that AI makes good marketing affordable for small brands, and that “resonance” matters more than who made the content. Prepare for: “Then why the NDA?”</div>
+    <div class="tabpanel" id="t4" role="tabpanel"><b>Panel (3–4 students).</b> Apply the regulator’s test from the article: is the ad <i>misleading</i>, and is it <i>socially responsible</i>? Ask each team one hard question. Track fallacy flags below and announce a ruling with two reasons.</div>
+    <div class="tabpanel" id="t5" role="tabpanel">
+      <ol class="steps">
+        <li>Prepare in teams: write a 90-second opening statement with ethos, pathos and logos, plus your hidden fallacy (6 min).</li>
+        <li>Opening statements: complainants, brand, AI studio (5 min).</li>
+        <li>Panel questions and rebuttals; flags can be raised at any time (7 min).</li>
+        <li>Panel deliberates in front of everyone; teams reveal their hidden fallacies (4 min).</li>
+        <li>Ruling and debrief: which argument was strongest, and why? (3 min)</li>
+      </ol>
+    </div>
+    <div class="cols" style="margin-top:8px">
+      <div>
+        <label class="q" for="hs1">My team’s opening statement notes (mark your hidden fallacy with *)</label>
+        <textarea id="hs1" style="min-height:120px"></textarea>
+      </div>
+      <div>
+        <label class="q">Fallacy flags caught (panel / all)</label>
+        <div class="flags" id="flags">
+          <div class="flag"><b>Straw man</b><span class="n">0</span><div><button type="button" data-f="-1" aria-label="minus">−</button><button type="button" data-f="1" aria-label="plus">+</button></div></div>
+          <div class="flag"><b>Slippery slope</b><span class="n">0</span><div><button type="button" data-f="-1" aria-label="minus">−</button><button type="button" data-f="1" aria-label="plus">+</button></div></div>
+          <div class="flag"><b>Ad hominem</b><span class="n">0</span><div><button type="button" data-f="-1" aria-label="minus">−</button><button type="button" data-f="1" aria-label="plus">+</button></div></div>
+          <div class="flag"><b>Bandwagon</b><span class="n">0</span><div><button type="button" data-f="-1" aria-label="minus">−</button><button type="button" data-f="1" aria-label="plus">+</button></div></div>
+          <div class="flag"><b>False dilemma</b><span class="n">0</span><div><button type="button" data-f="-1" aria-label="minus">−</button><button type="button" data-f="1" aria-label="plus">+</button></div></div>
+          <div class="flag"><b>Hasty gen.</b><span class="n">0</span><div><button type="button" data-f="-1" aria-label="minus">−</button><button type="button" data-f="1" aria-label="plus">+</button></div></div>
+        </div>
+        <label class="q">Ruling</label>
+        <div class="opts"><label><input type="radio" name="ruling" value="up">Complaint upheld</label><label><input type="radio" name="ruling" value="cond">Upheld with conditions</label><label><input type="radio" name="ruling" value="not">Not upheld</label></div>
+        <label class="q" for="rl1">Two reasons for the ruling, and any condition (e.g. a label):</label>
+        <textarea id="rl1"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="act a" id="write">
+    <div class="act-h"><h3>Q. Letter to the regulator</h3><button class="tchip" type="button" data-min="20">20 min</button></div>
+    <p class="task"><b>Should brands be required to label AI-generated influencers?</b> Write a <b>150–180-word</b> letter to the ASA (or your own country’s advertising regulator). Your letter must:</p>
+    <div class="cols">
+      <div>
+        <ul class="goals" style="font-size:14.5px">
+          <li>state a clear position in the first two sentences;</li>
+          <li>use ethos, pathos and logos at least once each;</li>
+          <li>represent the opposing view fairly (no straw man!) before answering it;</li>
+          <li>cite one source with a reporting verb (e.g. <i>Which? contends that…</i>);</li>
+          <li>use at least <b>four</b> words from this week’s lists.</li>
+        </ul>
+      </div>
+      <div class="panel" style="padding:10px 12px">
+        <b style="color:var(--navy)">Useful frames</b>
+        <div style="font-size:14px;margin-top:4px">As a consumer who… (ethos) · Imagine discovering that… (pathos) · According to Which?, … (logos) · Supporters of AI content argue that… ; however, … · Some may claim that…, but this ignores…</div>
+      </div>
+    </div>
+    <textarea id="letter" style="min-height:220px;margin-top:8px" placeholder="Dear Advertising Standards Authority,"></textarea>
+    <div class="chkrow" style="margin-top:6px"><span>Words: <span class="wc" id="wc">0</span> / 150–180</span><span class="note">Target vocabulary used (lights up as you write):</span></div>
+    <div class="tracker" id="vtrack"></div>
+    <div class="audit">
+      <b style="color:var(--navy)">Self-audit before you save</b>
+      <label><input type="checkbox" id="au1"> My position is clear in the first two sentences.</label>
+      <label><input type="checkbox" id="au2"> I can point to my ethos, pathos and logos sentences.</label>
+      <label><input type="checkbox" id="au3"> I described the other side as its supporters would describe it.</label>
+      <label><input type="checkbox" id="au4"> I checked my letter for my own fallacies (especially slippery slope!).</label>
+    </div>
+    <div class="panel" style="margin-top:12px;background:var(--gold-pale);border-color:#ecd48a">
+      <b style="color:var(--navy)">Community assignment (A2, Article 3)</b>
+      <p style="margin:4px 0 0">Open Approach’s Community and begin the <b>Article 3 Community assignment</b> posted with this week’s article. A2 covers Articles 3 and 4 and is due in Week 5. Reminder: <b>A1 (Articles 1–2) is due this week.</b> Save this worksheet as a PDF (button at the top) to keep your letter and answers.</p>
+    </div>
+  </div>
+</section>
+
+<div class="foot">Approach International Student Center · Current Issues BP/AAP · Fall 2026 · Week 3. Readings are classroom adaptations of the cited articles for educational use; please read the originals on Approach’s Community. Your answers are saved automatically in this browser only.</div>
+</main>
+
+<script>
+(function(){
+  const KEY='ci-bpaap-w3:';
+  const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+
+  /* ---------- populate selects ---------- */
+  const v1defs=[['a','gradual weakening or disappearance'],['b','copy the look or behaviour of something'],['c','posts that are not paid for'],['d','making information known to people'],['e','not transparent; hard to see into or understand'],['f','officially check something against rules'],['g','careful, detailed examination'],['h','obey a rule or law']];
+  const v1order=['e','c','h','a','g','b','f','d'];
+  $$('[data-ex="v1"] select').forEach(s=>{s.innerHTML='<option value="">choose…</option>'+v1order.map(k=>`<option value="${k}">${v1defs.find(d=>d[0]===k)[1]}</option>`).join('')});
+  const fal=[['straw','Straw man'],['slope','Slippery slope'],['adhom','Ad hominem'],['band','Bandwagon'],['dilemma','False dilemma'],['hasty','Hasty generalization']];
+  $$('[data-ex="fd"] select').forEach(s=>{s.innerHTML='<option value="">which fallacy?</option>'+fal.map(f=>`<option value="${f[0]}">${f[1]}</option>`).join('')});
+  const pos=[['A','Calls for clear labelling of AI people'],['B','Judges ads by whether they mislead, not by AI use'],['C','Downplays its AI use as a small experiment'],['D','Gives another reason for deleting images'],['E','Defends AI content as cheaper and still “authentic”'],['F','Refuses fake AI testimonials on principle'],['G','Requires deepfake labels, but not in the UK']];
+  const posOrder=['E','B','G','C','F','A','D'];
+  $$('select.pos').forEach(s=>{s.innerHTML='<option value="">position…</option>'+posOrder.map(k=>`<option value="${k}">${k}: ${pos.find(p=>p[0]===k)[1]}</option>`).join('')});
+  const rv=['says','argues','claims','insists','contends','maintains','admits','acknowledges','denies','warns'];
+  $$('select.rv').forEach(s=>{s.innerHTML='<option value="">verb…</option>'+rv.map(v=>`<option>${v}</option>`).join('')});
+  const evo=[['stat','Vague, unsourced statistic'],['gen','Sweeping generalization'],['redef','Redefining a key word'],['alt','Unverifiable alternative explanation']];
+  $$('select.evs').forEach(s=>{s.innerHTML='<option value="">weakness…</option>'+[evo[2],evo[0],evo[3],evo[1]].map(o=>`<option value="${o[0]}">${o[1]}</option>`).join('')});
+
+  /* ---------- autosave ---------- */
+  const fields=$$('input,textarea,select').filter(el=>!el.closest('.bar'));
+  fields.forEach((el,i)=>{ if(!el.id && el.type!=='radio') el.dataset.k='f'+i; });
+  const keyOf=el=>el.type==='radio'?'r:'+el.name:(el.id||el.dataset.k);
+  let st={}; try{st=JSON.parse(localStorage.getItem(KEY+'data')||'{}')}catch(e){st={}}
+  fields.forEach(el=>{
+    const k=keyOf(el); if(!(k in st)) return;
+    if(el.type==='radio') el.checked=(st[k]===el.value);
+    else if(el.type==='checkbox') el.checked=!!st[k];
+    else el.value=st[k];
+  });
+  let tSave;
+  function persist(){try{localStorage.setItem(KEY+'data',JSON.stringify(st));const t=new Date();$('#saved').textContent='Saved '+t.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});}catch(e){$('#saved').textContent='Not saved (storage off)';}}
+  function onField(e){const el=e.target; if(!fields.includes(el))return; const k=keyOf(el);
+    st[k]=el.type==='checkbox'?el.checked:el.value; clearTimeout(tSave); tSave=setTimeout(persist,300);}
+  document.addEventListener('input',onField); document.addEventListener('change',onField);
+
+  /* ---------- feed reveal ---------- */
+  const feedAns={feed1:['ad'],feed2:['not','cant'],feed3:['cant','ad'],feed4:['ad'],feed5:['ad'],feed6:['cant']};
+  function revealFeed(save=true){ $('#feed').classList.add('shown');
+    let n=0,ans=0; for(const k in feedAns){const c=$(`input[name="${k}"]:checked`); if(c){ans++; if(feedAns[k].includes(c.value)) n++;}}
+    $('#feedscore').textContent=ans?`Your calls matched the commentary on ${n} of 6 posts.`:'';
+    if(save){st['ui:feed']=1;persist();} }
+  $('[data-revealfeed]').addEventListener('click',()=>revealFeed());
+  if(st['ui:feed']) revealFeed(false);
+
+  /* ---------- reveal ---------- */
+  $$('[data-reveal]').forEach(b=>{const t=$('#'+b.dataset.reveal);
+    const show=()=>{t.classList.add('shown');t.style.display='block';};
+    b.addEventListener('click',()=>{show();st['ui:'+t.id]=1;persist();});
+    if(st['ui:'+t.id]) show();});
+
+  /* ---------- self-check ---------- */
+  const norm=s=>s.trim().toLowerCase().replace(/\s+/g,' ').replace(/[.!?]$/,'');
+  function check(ex,save=true){
+    const box=$(`[data-ex="${ex}"]`); let ok=0,tot=0;
+    $$('.item',box).forEach(it=>{
+      const sel=it.querySelector('select[data-ans],input[type=text][data-ans],.opts[data-ans]'); if(!sel) return;
+      tot++; let v='';
+      if(sel.classList.contains('opts')){const c=sel.querySelector('input:checked'); v=c?c.value:'';}
+      else v=sel.value;
+      const good=sel.dataset.ans.split('|').some(a=>norm(a)===norm(v));
+      it.classList.toggle('ok',good); it.classList.toggle('no',!good); if(good) ok++;
+    });
+    box.classList.add('checked');
+    const sc=box.querySelector('.score'); if(sc) sc.textContent=`${ok} / ${tot}`;
+    if(save){st['chk:'+ex]=1;persist();}
+  }
+  $$('[data-check]').forEach(b=>b.addEventListener('click',()=>check(b.dataset.check)));
+  $$('[data-check]').forEach(b=>{ if(st['chk:'+b.dataset.check]) check(b.dataset.check,false); });
+
+  /* ---------- tabs ---------- */
+  $$('.tabs button').forEach(b=>b.addEventListener('click',()=>{
+    const wrap=b.closest('.act');
+    $$('.tabs button',wrap).forEach(x=>x.setAttribute('aria-selected',x===b));
+    $$('.tabpanel',wrap).forEach(p=>p.classList.toggle('on',p.id===b.dataset.tab));
+  }));
+
+  /* ---------- ranking ---------- */
+  const rank=$('#rank1');
+  if(st['rank1']) st['rank1'].forEach(id=>{const li=rank.querySelector(`[data-id="${id}"]`); if(li) rank.appendChild(li);});
+  rank.addEventListener('click',e=>{const b=e.target.closest('button'); if(!b) return; const li=b.closest('li');
+    if('up' in b.dataset && li.previousElementSibling) rank.insertBefore(li,li.previousElementSibling);
+    if('down' in b.dataset && li.nextElementSibling) rank.insertBefore(li.nextElementSibling,li);
+    b.focus(); st['rank1']=$$('li',rank).map(l=>l.dataset.id); persist();});
+
+  /* ---------- flags ---------- */
+  const flags=$$('#flags .flag'); const fv=st['flags']||[0,0,0,0,0,0];
+  flags.forEach((f,i)=>{f.querySelector('.n').textContent=fv[i];
+    f.addEventListener('click',e=>{const b=e.target.closest('button'); if(!b) return; fv[i]=Math.max(0,fv[i]+(+b.dataset.f)); f.querySelector('.n').textContent=fv[i]; st['flags']=fv; persist();});});
+
+  /* ---------- writing tracker ---------- */
+  const targets=[['erosion',/\berosion\b|\berod/i],['mimic',/\bmimic/i],['organic',/\borganic\b/i],['disclosure',/\bdisclos/i],['opaque',/\bopaque/i],['audit',/\baudit/i],['scrutiny',/\bscrutin/i],['comply with',/\bcompl(y|ies|ied|iance|ying)\b/i],['purport',/\bpurport/i],['deploy',/\bdeploy/i],['deepfake',/\bdeep-?fake/i],['authenticity',/\bauthentic/i],['resonate',/\bresonat|\bresonance/i],['plausible deniability',/plausible deniability/i],['misleading',/\bmislead|\bmisled/i],['prohibit',/\bprohibit/i],['scalable',/\bscal(able|ability)/i],['straw man',/straw ?man/i],['slippery slope',/slippery slope/i],['ad hominem',/ad hominem/i],['reporting verb',/\b(argues?|contends?|insists?|maintains?|acknowledges?|claims?|warns?|points out)\b/i]];
+  const vt=$('#vtrack'); vt.innerHTML=targets.map(t=>`<span class="chip">${t[0]}</span>`).join('');
+  const chips=$$('.chip',vt), letter=$('#letter');
+  function track(){const t=letter.value; const w=(t.trim().match(/\S+/g)||[]).length; const wc=$('#wc'); wc.textContent=w; wc.classList.toggle('good',w>=150&&w<=180);
+    targets.forEach((x,i)=>chips[i].classList.toggle('on',x[1].test(t)));}
+  letter.addEventListener('input',track); track();
+
+  /* ---------- timer ---------- */
+  let left=0,run=false,iv=null; const clock=$('#clock'),tbox=$('#timer'),tStart=$('#tStart');
+  const fmt=s=>String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');
+  function draw(){clock.textContent=fmt(left); tStart.textContent=run?'❚❚':'▶';}
+  function tick(){ if(left>0){left--; draw(); if(left===0){stop(); tbox.classList.add('done'); try{const a=new (window.AudioContext||window.webkitAudioContext)(); const o=a.createOscillator(); o.connect(a.destination); o.frequency.value=880; o.start(); o.stop(a.currentTime+.5);}catch(e){}}} }
+  function start(){ if(left<=0) return; run=true; tbox.classList.remove('done'); clearInterval(iv); iv=setInterval(tick,1000); draw(); }
+  function stop(){ run=false; clearInterval(iv); draw(); }
+  tStart.addEventListener('click',()=>run?stop():start());
+  $('#tReset').addEventListener('click',()=>{stop(); left=0; tbox.classList.remove('done'); draw();});
+  $('[data-add]').addEventListener('click',()=>{left+=60; draw();});
+  $$('[data-min]').forEach(b=>b.addEventListener('click',()=>{left=(+b.dataset.min)*60; start();}));
+  draw();
+
+  /* ---------- print ---------- */
+  function prep(){ $$('textarea').forEach(t=>{let c=t.nextElementSibling; if(!c||!c.classList.contains('print-copy')){c=document.createElement('div'); c.className='print-copy'; t.after(c);} c.textContent=t.value||' ';}); }
+  window.addEventListener('beforeprint',prep);
+  $('#printBtn').addEventListener('click',()=>{prep(); window.print();});
+
+  /* ---------- clear ---------- */
+  $('#clearBtn').addEventListener('click',()=>{ if(!confirm('Clear all your answers on this worksheet? This cannot be undone.')) return;
+    try{localStorage.removeItem(KEY+'data')}catch(e){} location.reload(); });
+})();
+</script>
+</body>
+</html>
